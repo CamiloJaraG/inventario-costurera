@@ -17,7 +17,12 @@
                             <i class="fa-solid fa-boxes"></i> Inventario
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="dropdownInventario">
-                            <li><a class="dropdown-item" href="{% url 'listar_vestimentas' %}">Vestimentas</a></li>
+                            <li>
+                                <a class="dropdown-item" href="{% url 'listar_vestimentas' %}">
+                                    <i class="fa-solid fa-shirt"></i>
+                                    Vestimentas
+                                </a>
+                            </li>
                             <li><a class="dropdown-item" href="#">Opción 2</a></li>
                         </ul>
                     </li>
@@ -27,8 +32,18 @@
                             <i class="fa-solid fa-list"></i> Listas
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                            <li><a class="dropdown-item" href="{% url 'listar_clientes' %}">Clientes</a></li>
-                            <li><a class="dropdown-item" href="{% url 'listar_tipo_pagos' %}">Tipos de pago</a></li>
+                            <li>
+                                <a class="dropdown-item" href="{% url 'listar_clientes' %}">
+                                    <i class="fa-solid fa-users"></i>
+                                    Clientes
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="{% url 'listar_tipo_pagos' %}">
+                                    <i class="fa-solid fa-credit-card"></i>
+                                    Tipos de pago
+                                </a>
+                            </li>
                         </ul>
                     </li>
                 </ul>
@@ -49,4 +64,3 @@
             </ul>
         </div>
     </nav>
-</header>
