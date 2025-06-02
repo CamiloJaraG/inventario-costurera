@@ -1,5 +1,5 @@
 from django import forms
-from productos.models import Cliente, Vestimenta
+from productos.models import Cliente, TipoPago, Vestimenta
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 
@@ -33,4 +33,15 @@ class VestimentaForm(forms.ModelForm):
             'nombre': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingrese el nombre de la vestimenta'}),
             'precio': forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Ingrese el precio'}),
             'cliente': forms.Select(attrs={'class': 'form-control'}),
+        }
+
+class TipoPagoForm(forms.ModelForm):
+    class Meta:
+        model = TipoPago
+        fields = ['tipo']
+        labels = {
+            'tipo': 'Tipo de Pago',
+        }
+        widgets = {
+            'tipo': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingrese el tipo de pago'}),
         }

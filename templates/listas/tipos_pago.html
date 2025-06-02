@@ -2,30 +2,26 @@
 {% load static %}
 {% block contenido %}
     <div class="alert alert-primary text-center mt-3 p-3">
-        <h3>Lista de clientes</h3>
+        <h3>Lista de tipos de pago</h3>
     </div>
     <div class="text-end mb-2">
-        <a href="{% url 'crear_cliente' %}" class="btn btn-success">Crear cliente</a>
+        <a href="{% url 'crear_tipo_pago' %}" class="btn btn-success">Crear tipo de pago</a>
     </div>
     {% if pageObj %}
     <div>
         <table class="table table-responsive table-hover">
             <thead class="table-dark">
                 <tr>
-                    <th>Nombre</th>
-                    <th>Correo</th>
-                    <th>Teléfono</th>
+                    <th>Tipo de pago</th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
                 {% for item in pageObj %}
                     <tr>
-                        <td>{{ item.nombre }}</td>
-                        <td>{{ item.correo }}</td>
-                        <td>{{ item.telefono }}</td>
+                        <td>{{ item.tipo }}</td>
                         <td nowrap class="col-2">
-                            <a href="{% url 'editar_cliente' item.id %}" class="">
+                            <a href="{% url 'editar_tipo_pago' item.id %}" class="">
                                 <i class="fa-solid fa-pen-to-square"></i> Editar
                             </a>
                             <a onclick="eliminar('{{ item.id }}')" class="">
@@ -80,7 +76,7 @@
     </div>
     {% else %}
     <div class="alert alert-warning">
-        <b>No hay clientes.</b> <i class="fa-solid fa-face-frown"></i>
+        <b>No hay tipos de pago.</b> <i class="fa-solid fa-face-frown"></i>
     </div>
     {% endif %}
     <script src="{% static 'js/sweetalert2.min.js' %}"></script>
@@ -97,7 +93,7 @@
                 cancelButtonText: "Cancelar"
                 }).then((result) => {
                 if (result.isConfirmed) {
-                    window.location.href = '/productos/eliminarcliente/' + id
+                    window.location.href = '/productos/eliminartipopago/' + id
                 }
                 });
         }

@@ -2,8 +2,8 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required, permission_required
 from django.http import HttpResponse
-from productos.models import Cliente, Vestimenta
-from productos.forms import ClienteForm, VestimentaForm
+from productos.models import Cliente, TipoPago, Vestimenta
+from productos.forms import ClienteForm, TipoPagoForm, VestimentaForm
 from django.core.paginator import Paginator
 
 # Permisos serán agregados más adelante
@@ -58,7 +58,7 @@ def eliminarCliente(request, id):
     cliente = Cliente.objects.get(id=id)
     cliente.delete()
     messages.success(request, 'Cliente eliminado exitosamente.')
-    return redirect('/listas/listarclientes/')
+    return redirect('/productos/listarclientes/')
 
 def crearVestimenta(request):
     formulario = VestimentaForm()
@@ -70,7 +70,7 @@ def crearVestimenta(request):
     data = {
         'titulo': 'Crear vestimenta',
         'formulario': formulario,
-        'ruta': '/listas/listarvestimentas/',
+        'ruta': '/productos/listarvestimentas/',
     }
     return render(request, 'formulario.html', data)
 
@@ -96,7 +96,7 @@ def editarVestimenta(request, id):
     data = {
         'titulo': 'Editar vestimenta',
         'formulario': formulario,
-        'ruta': '/listas/listarvestimentas/',
+        'ruta': '/productos/listarvestimentas/',
     }
     return render(request, 'formulario.html', data)
 
@@ -104,4 +104,50 @@ def eliminarVestimenta(request, id):
     vestimenta = Vestimenta.objects.get(id=id)
     vestimenta.delete()
     messages.success(request, 'Vestimenta eliminada exitosamente.')
-    return redirect('/listas/listarvestimentas/')
+    return redirect('/productos/listarvestimentas/')
+
+def crearTipoPago(request):
+    formulario = TipoPagoForm()
+    if request.method == 'POST':
+        formulario = TipoPagoForm(request.POST)
+        if formulario.is_valid():
+            formulario.save()
+            messages.success(request, 'Tipo de pago creado exitosamente.')
+    data = {
+        'titulo': 'Crear tipo de pago',
+        'formulario': formulario,
+        'ruta': '/productos/listartipopagos/',
+    }
+    return render(request, 'formulario.html', data)
+
+def listarTipoPagos(request):
+    tipos_pago = TipoPago.objects.all()
+    paginator = Paginator(tipos_pago, 10) 
+    pageNum = request.GET.get('page')
+    pageObj = paginator.get_page(pageNum)
+    data = {
+        'titulo': 'Lista de tipos de pago',
+        'pageObj': pageObj,
+    }
+    return render(request, 'listas/tipos_pago.html', data)
+
+def editarTipoPago(request, id):
+    tipo_pago = TipoPago.objects.get(id=id)
+    formulario = TipoPagoForm(instance=tipo_pago)
+    if request.method == 'POST':
+        formulario = TipoPagoForm(request.POST, instance=tipo_pago)
+        if formulario.is_valid():
+            formulario.save()
+            messages.success(request, 'Tipo de pago editado exitosamente.')
+    data = {
+        'titulo': 'Editar tipo de pago',
+        'formulario': formulario,
+        'ruta': '/productos/listartipopagos/',
+    }
+    return render(request, 'formulario.html', data)
+
+def eliminarTipoPago(request, id):
+    tipo_pago = TipoPago.objects.get(id=id)
+    tipo_pago.delete()
+    messages.success(request, 'Tipo de pago eliminado exitosamente.')
+    return redirect('/productos/listartipopagos/')

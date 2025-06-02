@@ -19,6 +19,14 @@
     <script src="{% static 'js/sweetalert2.min.js' %}"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            var nombreInput = document.getElementById('id_nombre')
+            nombreInput.addEventListener('input', function(event) {
+                this.value = this.value.replace(/[^a-zA-Z\s]/g, '')
+            });
+            var apellidoInput = document.getElementById('id_apellido')
+            apellidoInput.addEventListener('input', function(event) {
+                this.value = this.value.replace(/[^a-zA-Z\s]/g, '')
+            });
             var telefonoInput = document.getElementById('id_telefono')
             telefonoInput.addEventListener('input', function(event) {
                 this.value = this.value.replace(/\D/g, '')

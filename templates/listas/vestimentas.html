@@ -22,7 +22,7 @@
                 {% for item in pageObj %}
                     <tr>
                         <td>{{ item.nombre }}</td>
-                        <td>{{ item.precio }}</td>
+                        <td>${{ item.precio }}</td>
                         <td>{{ item.cliente }}</td>
                         <td nowrap class="col-2">
                             <a href="{% url 'editar_vestimenta' item.id %}" class="">
@@ -97,7 +97,7 @@
                 cancelButtonText: "Cancelar"
                 }).then((result) => {
                 if (result.isConfirmed) {
-                    window.location.href = '/listas/eliminarvestimenta/' + id
+                    window.location.href = '/productos/eliminarvestimenta/' + id
                 }
                 });
         }
