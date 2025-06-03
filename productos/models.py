@@ -41,7 +41,7 @@ class Material(models.Model):
     descripcion = models.TextField()
     cantidad = models.PositiveIntegerField()
     precio_unitario = models.DecimalField(max_digits=10, decimal_places=0)
-    fecha_entrada = models.DateField(auto_now_add=True)
+    fecha_entrada = models.DateField()
     tipo_material = models.ForeignKey(TipoMaterial, on_delete=models.PROTECT)
 
     def __str__(self):

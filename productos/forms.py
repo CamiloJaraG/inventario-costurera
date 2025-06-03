@@ -3,6 +3,7 @@ from productos.models import *
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 
+""" Formularios de tipos """
 class TipoClienteForm(forms.ModelForm):
     class Meta:
         model = TipoCliente
@@ -19,12 +20,24 @@ class TipoMaterialForm(forms.ModelForm):
         model = TipoMaterial
         fields = ['nombre']
         labels = {
-            'nombre': 'Nombre del Material',
+            'nombre': 'Nombre del Tipo de Material',
         }
         widgets = {
-            'nombre': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingrese el nombre del material'}),
+            'nombre': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingrese el nombre del tipo de material'}),
         }
 
+class TipoPagoForm(forms.ModelForm):
+    class Meta:
+        model = TipoPago
+        fields = ['tipo']
+        labels = {
+            'tipo': 'Tipo de Pago',
+        }
+        widgets = {
+            'tipo': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingrese el tipo de pago'}),
+        }
+
+""" Formularios de entidades """
 class ClienteForm(forms.ModelForm):
     class Meta:
         model = Cliente
@@ -42,6 +55,27 @@ class ClienteForm(forms.ModelForm):
             'telefono': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingrese su número de teléfono'}),
         }
 
+class MaterialForm(forms.ModelForm):
+    class Meta:
+        model = Material
+        fields = ['nombre', 'descripcion', 'cantidad', 'precio_unitario', 'fecha_entrada', 'tipo_material']
+        labels = {
+            'nombre': 'Nombre del Material',
+            'descripcion': 'Descripción',
+            'cantidad': 'Cantidad',
+            'precio_unitario': 'Precio Unitario',
+            'fecha_entrada': 'Fecha de Entrada',
+            'tipo_material': 'Tipo de Material',
+        }
+        widgets = {
+            'nombre': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingrese el nombre del material'}),
+            'descripcion': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Ingrese una descripción'}),
+            'cantidad': forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Ingrese la cantidad'}),
+            'precio_unitario': forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Ingrese el precio unitario'}),
+            'fecha_entrada': forms.DateInput(attrs={'class': 'form-control', 'placeholder': 'Seleccione la fecha de entrada', 'type': 'date'}, format='%Y-%m-%d'),
+            'tipo_material': forms.Select(attrs={'class': 'form-control'}),
+        }
+
 class VestimentaForm(forms.ModelForm):
     class Meta:
         model = Vestimenta
@@ -57,13 +91,3 @@ class VestimentaForm(forms.ModelForm):
             'cliente': forms.Select(attrs={'class': 'form-control'}),
         }
 
-class TipoPagoForm(forms.ModelForm):
-    class Meta:
-        model = TipoPago
-        fields = ['tipo']
-        labels = {
-            'tipo': 'Tipo de Pago',
-        }
-        widgets = {
-            'tipo': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingrese el tipo de pago'}),
-        }
