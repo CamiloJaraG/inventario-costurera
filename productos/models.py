@@ -37,3 +37,5 @@ class TipoPago(models.Model):
         db_table = 'tipos_pago'
         verbose_name = "Tipo de Pago"
         verbose_name_plural = "Tipos de Pago"
+
+        

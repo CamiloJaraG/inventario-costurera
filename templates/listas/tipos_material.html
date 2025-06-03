@@ -1,0 +1,101 @@
+{% extends 'master.html' %}
+{% load static %}
+{% block contenido %}
+    <div class="alert alert-primary text-center mt-3 p-3">
+        <h3>Lista de tipos de materiales</h3>
+    </div>
+    <div class="text-end mb-2">
+        <a href="{% url 'crear_tipo_material' %}" class="btn btn-success">Crear Tipo material</a>
+    </div>
+    {% if pageObj %}
+    <div>
+        <table class="table table-responsive table-hover">
+            <thead class="table-dark">
+                <tr>
+                    <th>Nombre</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in pageObj %}
+                    <tr>
+                        <td>{{ item.nombre }}</td>
+                        <td nowrap class="col-2">
+                            <a href="{% url 'editar_tipo_material' item.id %}" class="">
+                                <i class="fa-solid fa-pen-to-square"></i> Editar
+                            </a>
+                            <a onclick="eliminar('{{ item.id }}')" class="">
+                                <i class="fa-solid fa-trash"></i> Eliminar
+                            </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <nav>
+            <ul class="pagination justify-content-center">
+                {% if pageObj.has_previous %}
+                <li class="page-item">
+                    <a href="?page={{ pageObj.previous_page_number }}" class="page-link">
+                        <i class="fa-solid fa-arrow-left"></i> Anterior
+                    </a>
+                </li>
+                {% else %}
+                <li class="page-item disabled">
+                    <span class="page-link">
+                        <i class="fa-solid fa-arrow-left"></i> Anterior
+                    </span>
+                </li>
+                {% endif %}
+                {% for num in pageObj.paginator.page_range %}
+                    {% if pageObj.number == num %}
+                    <li class="page-item active">
+                        <span class="page-link">{{ num }}</span>
+                    </li>
+                    {% elif num > pageObj.number|add:'-3' and num < pageObj.number|add:'3' %}
+                    <li class="page-item">
+                        <a href="?page={{ num }}" class="page-link"></a>
+                    </li>
+                    {% endif %}
+                {% endfor %}   
+                {% if pageObj.has_next %}
+                <li class="page-item">
+                    <a href="?page={{ pageObj.next_page_number }}" class="page-link">
+                        Siguiente <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </li>
+                {% else %}
+                <li class="page-item disabled">
+                    <span class="page-link">
+                        Siguiente <i class="fa-solid fa-arrow-right"></i>   
+                    </span>
+                </li>
+                {% endif %}
+            </ul>
+        </nav>
+    </div>
+    {% else %}
+    <div class="alert alert-warning">
+        <b>No hay clientes.</b> <i class="fa-solid fa-face-frown"></i>
+    </div>
+    {% endif %}
+    <script src="{% static 'js/sweetalert2.min.js' %}"></script>
+    <script>
+        const eliminar = (id) => {
+            Swal.fire({
+                title: "¿Desea eliminar el registro?",
+                text: "No podrás revertir los cambios si aceptas.",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Eliminar",
+                cancelButtonText: "Cancelar"
+                }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = '/productos/eliminartipomaterial/' + id
+                }
+                });
+        }
+    </script>
+{% endblock contenido %}
