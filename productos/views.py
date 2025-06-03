@@ -14,6 +14,8 @@ def inicio(request):
     }
     return render(request, 'master.html', data)
 
+
+
 def crearCliente(request):
     formulario = ClienteForm()
     if request.method == 'POST':
