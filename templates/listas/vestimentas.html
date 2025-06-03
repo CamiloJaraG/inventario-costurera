@@ -25,10 +25,10 @@
                         <td>${{ item.precio }}</td>
                         <td>{{ item.cliente }}</td>
                         <td nowrap class="col-2">
-                            <a href="{% url 'editar_vestimenta' item.id %}" class="">
+                            <a class="table-edit text-white" href="{% url 'editar_vestimenta' item.id %}">
                                 <i class="fa-solid fa-pen-to-square"></i> Editar
                             </a>
-                            <a onclick="eliminar('{{ item.id }}')" class="">
+                            <a class="table-delete text-white" href="#" onclick="eliminar('{{ item.id }}')">
                                 <i class="fa-solid fa-trash"></i> Eliminar
                             </a>
                         </td>
