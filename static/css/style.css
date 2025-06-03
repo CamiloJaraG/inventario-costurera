@@ -40,3 +40,24 @@ body {
 .nav-link {
   font-size: large !important;
 }
+
+.form-btn {
+  border-color: black !important;
+  border-radius: 24px !important;
+  height: 40px !important;
+  width: 120px !important;
+  transition: transform 0.3s;
+}
+
+.form-btn:hover {
+  transform: scale(1.05);
+}
+
+.form-clean {
+  background-color: #09e4e4 !important;
+}
+
+.form-submit {
+  background-color: #3ceb70 !important;
+}
+

@@ -50,7 +50,7 @@
                 {% for num in pageObj.paginator.page_range %}
                     {% if pageObj.number == num %}
                     <li class="page-item active">
-                        <span class="page-link">{{ num }}</span>
+                        <span class="page-link bg-dark">{{ num }}</span>
                     </li>
                     {% elif num > pageObj.number|add:'-3' and num < pageObj.number|add:'3' %}
                     <li class="page-item">
