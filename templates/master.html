@@ -11,7 +11,95 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 </head>
 <body>
-    {% include 'header.html' %}
+    <header>
+    <nav class="navbar navbar-dark fixed-top bg-dark p-3">
+        <div class="container-fluid px-3 d-flex align-items-center">
+            <!-- Logo y menú -->
+            <div class="d-flex align-items-center gap-4">
+                <div class="logo">
+                    <a class="navbar-brand" href="{% url 'inicio' %}">
+                        <i class="fa-solid fa-shirt"></i>
+                        Confecciones Leonor
+                    </a>
+                </div>
+                <ul class="nav nav-underline">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle text-white" id="dropdownInventario" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fa-solid fa-boxes"></i> Inventario
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownInventario">
+                            <li>
+                                <a class="dropdown-item" href="{% url 'listar_vestimentas' %}">
+                                    <i class="fa-solid fa-shirt"></i>
+                                    Vestimentas
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="{% url 'listar_materiales' %}">
+                                    <i class="fa-solid fa-cubes"></i>
+                                    Materiales
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle text-white" id="dropdownListas" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fa-solid fa-list"></i> Listas
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                            <li>
+                                <a class="dropdown-item" href="{% url 'listar_tipo_clientes' %}">
+                                    <i class="fa-solid fa-users-gear"></i>
+                                    Tipos de clientes
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="{% url 'listar_clientes' %}">
+                                    <i class="fa-solid fa-users"></i>
+                                    Clientes
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="{% url 'listar_tipo_pagos' %}">
+                                    <i class="fa-solid fa-credit-card"></i>
+                                    Tipos de pago
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="{% url 'listar_tipo_materiales' %}">
+                                    <i class="fa-solid fa-tools"></i>
+                                    Tipos de materiales
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Menú de usuario a la derecha -->
+            <ul class="nav nav-underline ms-auto">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle text-white" href="#" id="dropdownNotificacion" 
+                    role="button" data-bs-toggle="dropdown">
+                        <i class="fa-solid fa-bell"></i> Notificaciones
+                    </a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle text-white user-dropdown" href="#" id="dropdownUser"
+                        role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fa-solid fa-user"></i> Usuario
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownUser">
+                        <li><a class="dropdown-item" href="#">Mi perfil</a></li>
+                        <li><a class="dropdown-item" href="#">Cerrar sesión</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
     <main class="container mt-2 pt-2">
         {% block contenido %}
         {% endblock %}
