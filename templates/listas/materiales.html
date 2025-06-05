@@ -12,6 +12,7 @@
         <table class="table table-responsive table-hover">
             <thead class="table-dark">
                 <tr>
+                    <td>Estado</td>
                     <th>Nombre</th>
                     <th>Descripcion</th>
                     <th>Cantidad</th>
@@ -24,6 +25,15 @@
             <tbody>
                 {% for item in pageObj %}
                     <tr>
+                        <td>
+                        {% if item.cantidad >= 20 %}
+                            <i class="fa-solid fa-circle-check text-success"></i> Disponible
+                        {% elif item.cantidad >= 1 and item.cantidad < 20 %}
+                            <i class="fa-solid fa-triangle-exclamation text-warning"></i> Bajo stock
+                        {% else %}
+                            <i class="fa-solid fa-circle-xmark text-danger"></i> Agotado
+                        {% endif %}
+                        </td>
                         <td>{{ item.nombre }}</td>
                         <td>{{ item.descripcion }}</td>
                         <td>{{ item.cantidad }}</td>
