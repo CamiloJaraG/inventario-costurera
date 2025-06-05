@@ -5,6 +5,7 @@ from django.http import HttpResponse
 from productos.models import *
 from productos.forms import *
 from django.core.paginator import Paginator
+import xlwt
 
 # Permisos serán agregados más adelante
 
