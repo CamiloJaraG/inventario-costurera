@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required, permission_required
 from django.http import HttpResponse
 from productos.models import *
@@ -7,8 +8,29 @@ from productos.forms import *
 from django.core.paginator import Paginator
 import xlwt
 
-# Permisos serán agregados más adelante
+def inicioSesion(request):
+    if request.user.is_authenticated:
+        return redirect('inicio')
+    formulario = LoginForm(request.POST)
+    if request.method == 'POST' and formulario.is_valid():
+        username = formulario.cleaned_data['username']
+        password = formulario.cleaned_data['password']
+        usuario = authenticate(request, username=username, password=password)
+        if usuario is not None:
+            login(request, usuario)
+            return redirect('inicio')
+        else:
+            messages.error(request, 'Usuario o contraseña incorrectos.')
+    data = {
+        'formulario': formulario,
+    }
+    return render(request, 'registration/login.html', data)
 
+def cerrarSesion(request):
+    logout(request)
+    return redirect('login')
+
+@login_required()
 def inicio(request):
     data = {
         'titulo': 'Inicio',

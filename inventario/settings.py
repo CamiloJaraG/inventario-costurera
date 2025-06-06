@@ -14,11 +14,15 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
+LOGIN_URL = 'login'
+LOGIN_REDIRECT_URL = '/'
+
 CSRF_TRUSTED_ORIGINS = [
     'https://localhost:8000',
     'https://symmetrical-space-giggle-jjjj6549x4wpcqrq4-8000.app.github.dev/'
     'https://*.app.github.dev',
 ]
+
 # Application definition
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -27,7 +31,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'productos'
+    'productos',
 ]
 
 MIDDLEWARE = [
