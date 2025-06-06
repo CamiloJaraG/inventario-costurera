@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.urls import include, path
-from productos.views import login, logout, inicio
+from productos.views import inicio
 from django.contrib.auth.decorators import login_required
 
 urlpatterns = [

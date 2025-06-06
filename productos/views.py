@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
 from django.contrib.auth.decorators import login_required, permission_required
 from django.http import HttpResponse
 from productos.models import *
@@ -17,7 +17,7 @@ def inicioSesion(request):
         password = formulario.cleaned_data['password']
         usuario = authenticate(request, username=username, password=password)
         if usuario is not None:
-            login(request, usuario)
+            auth_login(request, usuario)
             return redirect('inicio')
         else:
             messages.error(request, 'Usuario o contraseña incorrectos.')
@@ -27,7 +27,7 @@ def inicioSesion(request):
     return render(request, 'registration/login.html', data)
 
 def cerrarSesion(request):
-    logout(request)
+    auth_logout(request)
     return redirect('login')
 
 @login_required()
