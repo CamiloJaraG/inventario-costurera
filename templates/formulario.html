@@ -26,7 +26,9 @@
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         const letrasConTildesRegex = /[^a-zA-ZáéíóúÁÉÍÓÚñÑ\s]/g;
-
+        // En caso de que se deba dejar un campo sin esta restricción
+        // se puede cambiar form-control por otro selector
+        // o agregar una clase específica a los inputs que no deben tenerla.
         document.querySelectorAll('input.form-control[type="text"]').forEach(input => {
             input.addEventListener('input', function () {
                 this.value = this.value.replace(letrasConTildesRegex, '');
