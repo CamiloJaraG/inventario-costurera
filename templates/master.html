@@ -85,15 +85,23 @@
                     role="button" data-bs-toggle="dropdown">
                         <i class="fa-solid fa-bell"></i> Notificaciones
                     </a>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownNotificacion">
+                        {% if notificaciones %}
+                            {% for n in notificaciones %}
+                            <li><span class="dropdown-item">{{ n }}</span></li>
+                            {% endfor %}
+                        {% else %}
+                            <li><span class="dropdown-item">No hay notificaciones</span></li>
+                        {% endif %}
+                    </ul>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle text-white user-dropdown" href="#" id="dropdownUser"
                         role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <i class="fa-solid fa-user"></i> Usuario
+                        <i class="fa-solid fa-user"></i> {{ request.user.get_full_name|default:request.user.username }}
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownUser">
-                        <li><a class="dropdown-item" href="#">Mi perfil</a></li>
-                        <li><a class="dropdown-item" href="{% url 'logout' %}">Cerrar sesión</a></li>
+                        <li><a class="dropdown-item" href="{% url 'logout' %}"><i class="fa-solid fa-right-from-bracket"></i>Cerrar sesión</a></li>
                     </ul>
                 </li>
             </ul>
