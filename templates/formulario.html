@@ -1,51 +1,55 @@
 {% extends 'master.html' %}
 {% load static %}
 {% block contenido %}
-    <div class="alert alert-primary text-center mt-3 p-3">
-        <h2>{{ titulo }}</h2>
-    </div>
-    <div class="container">
-        <form class="card" method="post" onsubmit="">
-            {% csrf_token %}
-            <div class="card-body">
-                {{ formulario }}
-            </div>
-            <div class="card-footer text-center">
-                <button class="form-btn form-submit text-white" type="submit">
-                    <i class="fa-solid fa-floppy-disk"></i>
-                    <span>Guardar</span>
-                </button>
-                <button class="form-btn form-clean text-white" type="reset">
-                    <i class="fa-solid fa-eraser"></i>
-                    <span>Limpiar</span>
-                </button>
-            </div>
-        </form>
-    </div>
-    <script src="{% static 'js/sweetalert2.min.js' %}"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            var nombreInput = document.getElementById('id_nombre')
-            nombreInput.addEventListener('input', function(event) {
-                this.value = this.value.replace(/[^a-zA-Z\s]/g, '')
-            });
-            var apellidoInput = document.getElementById('id_apellido')
-            apellidoInput.addEventListener('input', function(event) {
-                this.value = this.value.replace(/[^a-zA-Z\s]/g, '')
-            });
-            var telefonoInput = document.getElementById('id_telefono')
-            telefonoInput.addEventListener('input', function(event) {
-                this.value = this.value.replace(/\D/g, '')
-            });
+<div class="alert alert-primary text-center mt-3 p-3">
+    <h2>{{ titulo }}</h2>
+</div>
+<div class="container">
+    <form class="card" method="post" onsubmit="">
+        {% csrf_token %}
+        <div class="card-body">
+            {{ formulario }}
+        </div>
+        <div class="card-footer text-center">
+            <button class="form-btn form-submit text-white" type="submit">
+                <i class="fa-solid fa-floppy-disk"></i>
+                <span>Guardar</span>
+            </button>
+            <button class="form-btn form-clean text-white" type="reset">
+                <i class="fa-solid fa-eraser"></i>
+                <span>Limpiar</span>
+            </button>
+        </div>
+    </form>
+</div>
+<script src="{% static 'js/sweetalert2.min.js' %}"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const letrasConTildesRegex = /[^a-zA-ZáéíóúÁÉÍÓÚñÑ\s]/g;
+
+        const nombreInput = document.getElementById('id_nombre');
+        nombreInput.addEventListener('input', function (event) {
+            this.value = this.value.replace(letrasConTildesRegex, '');
         });
-    </script>
-    {% if messages %}
-        {% for msj in messages %}
-        <script>
-            Swal.fire('{{ msj }}', '', 'success').then((result) => {
-                window.location.href = "{{ ruta }}"
-            });
-        </script>
-        {% endfor %}
-    {% endif %}
+
+        const apellidoInput = document.getElementById('id_apellido');
+        apellidoInput.addEventListener('input', function (event) {
+            this.value = this.value.replace(letrasConTildesRegex, '');
+        });
+
+        const telefonoInput = document.getElementById('id_telefono');
+        telefonoInput.addEventListener('input', function (event) {
+            this.value = this.value.replace(/\D/g, '');
+        });
+    });
+</script>
+{% if messages %}
+{% for msj in messages %}
+<script>
+    Swal.fire('{{ msj }}', '', 'success').then((result) => {
+        window.location.href = "{{ ruta }}"
+    });
+</script>
+{% endfor %}
+{% endif %}
 {% endblock contenido %}
