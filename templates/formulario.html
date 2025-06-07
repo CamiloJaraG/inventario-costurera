@@ -27,20 +27,18 @@
     document.addEventListener('DOMContentLoaded', function () {
         const letrasConTildesRegex = /[^a-zA-ZáéíóúÁÉÍÓÚñÑ\s]/g;
 
-        const nombreInput = document.getElementById('id_nombre');
-        nombreInput.addEventListener('input', function (event) {
-            this.value = this.value.replace(letrasConTildesRegex, '');
+        document.querySelectorAll('input.form-control[type="text"]').forEach(input => {
+            input.addEventListener('input', function () {
+                this.value = this.value.replace(letrasConTildesRegex, '');
+            });
         });
 
-        const apellidoInput = document.getElementById('id_apellido');
-        apellidoInput.addEventListener('input', function (event) {
-            this.value = this.value.replace(letrasConTildesRegex, '');
-        });
-
-        const telefonoInput = document.getElementById('id_telefono');
-        telefonoInput.addEventListener('input', function (event) {
-            this.value = this.value.replace(/\D/g, '');
-        });
+        const telefono = document.getElementById('id_telefono');
+        if (telefono) {
+            telefono.addEventListener('input', function () {
+                this.value = this.value.replace(/\D/g, '');
+            });
+        }
     });
 </script>
 {% if messages %}
