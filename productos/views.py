@@ -11,6 +11,7 @@ import xlwt
 def inicioSesion(request):
     if request.user.is_authenticated:
         return redirect('inicio')
+    
     formulario = LoginForm(request.POST)
     if request.method == 'POST' and formulario.is_valid():
         username = formulario.cleaned_data['username']
@@ -21,6 +22,8 @@ def inicioSesion(request):
             return redirect('inicio')
         else:
             messages.error(request, 'Usuario o contraseña incorrectos.')
+    else:
+        formulario = LoginForm()
     data = {
         'formulario': formulario,
     }

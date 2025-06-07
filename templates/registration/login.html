@@ -27,21 +27,21 @@
                         <div class="card-body">
                             <form method="post" action="{% url 'login' %}">
                                 {% csrf_token %}
-                                {% if form.non_field_errors %}
-                                <div class="alert alert-danger">{{ form.non_field_errors }}</div>
+                                {% if formulario.non_field_errors %}
+                                <div class="alert alert-danger">{{ formulario.non_field_errors }}</div>
                                 {% endif %}
                                 <div class="mb-3">
-                                    {{ form.username.label_tag }}
-                                    {{ form.username }}
-                                    {% if form.username.errors %}
-                                    <div class="text-danger">{{ form.username.errors }}</div>
+                                    {{ formulario.username.label_tag }}
+                                    {{ formulario.username }}
+                                    {% if formulario.username.errors %}
+                                    <div class="text-danger">{{ formulario.username.errors }}</div>
                                     {% endif %}
                                 </div>
                                 <div class="mb-3">
-                                    {{ form.password.label_tag }}
-                                    {{ form.password }}
-                                    {% if form.password.errors %}
-                                    <div class="text-danger">{{ form.password.errors }}</div>
+                                    {{ formulario.password.label_tag }}
+                                    {{ formulario.password }}
+                                    {% if formulario.password.errors %}
+                                    <div class="text-danger">{{ formulario.password.errors }}</div>
                                     {% endif %}
                                 </div>
                                 <button type="submit" class="btn btn-primary w-100">Iniciar sesión</button>
