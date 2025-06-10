@@ -11,7 +11,6 @@ import xlwt
 def inicioSesion(request):
     if request.user.is_authenticated:
         return redirect('inicio')
-    
     formulario = LoginForm(request.POST)
     if request.method == 'POST' and formulario.is_valid():
         username = formulario.cleaned_data['username']
@@ -43,6 +42,7 @@ def inicio(request):
     }
     return render(request, 'master.html', data)
 
+@permission_required('productos.add_tipocliente', login_url='login', raise_exception=True)
 def crearTipoCliente(request):
     formulario = TipoClienteForm()
     if request.method == 'POST':
@@ -57,6 +57,7 @@ def crearTipoCliente(request):
     }
     return render(request, 'formulario.html', data)
 
+@permission_required('productos.view_tipocliente', login_url='login', raise_exception=True)
 def listarTipoClientes(request):
     tipos_clientes = TipoCliente.objects.all()
     paginator = Paginator(tipos_clientes, 10) 
@@ -68,6 +69,7 @@ def listarTipoClientes(request):
     }
     return render(request, 'listas/tipos_clientes.html', data)
 
+@permission_required('productos.change_tipocliente', login_url='login', raise_exception=True)
 def editarTipoCliente(request, id):
     tipo_cliente = TipoCliente.objects.get(id=id)
     formulario = TipoClienteForm(instance=tipo_cliente)
@@ -83,12 +85,14 @@ def editarTipoCliente(request, id):
     }
     return render(request, 'formulario.html', data)
 
+@permission_required('productos.delete_tipocliente', login_url='login', raise_exception=True)
 def eliminarTipoCliente(request, id):
     tipo_cliente = TipoCliente.objects.get(id=id)
     tipo_cliente.delete()
     messages.success(request, 'Tipo de cliente eliminado exitosamente.')
     return redirect('/productos/listartipoclientes/')
 
+@permission_required('productos.add_tipomaterial', login_url='login', raise_exception=True)
 def crearTipoMaterial(request):
     formulario = TipoMaterialForm()
     if request.method == 'POST':
@@ -103,6 +107,7 @@ def crearTipoMaterial(request):
     }
     return render(request, 'formulario.html', data)
 
+@permission_required('productos.view_tipomaterial', login_url='login', raise_exception=True)
 def listarTipoMateriales(request):
     tipos_materiales = TipoMaterial.objects.all()
     paginator = Paginator(tipos_materiales, 10) 
@@ -114,6 +119,7 @@ def listarTipoMateriales(request):
     }
     return render(request, 'listas/tipos_materiales.html', data)
 
+@permission_required('productos.change_tipomaterial', login_url='login', raise_exception=True)
 def editarTipoMaterial(request, id):
     tipo_material = TipoMaterial.objects.get(id=id)
     formulario = TipoMaterialForm(instance=tipo_material)
@@ -129,12 +135,14 @@ def editarTipoMaterial(request, id):
     }
     return render(request, 'formulario.html', data)
 
+@permission_required('productos.delete_tipomaterial', login_url='login', raise_exception=True)
 def eliminarTipoMaterial(request, id):
     tipo_material = TipoMaterial.objects.get(id=id)
     tipo_material.delete()
     messages.success(request, 'Tipo de material eliminado exitosamente.')
     return redirect('/productos/listartipomateriales/')
 
+@permission_required('productos.add_material', login_url='login', raise_exception=True)
 def crearMaterial(request):
     formulario = MaterialForm()
     if request.method == 'POST':
@@ -149,6 +157,7 @@ def crearMaterial(request):
     }
     return render(request, 'formulario.html', data)
 
+@permission_required('productos.view_material', login_url='login', raise_exception=True)
 def listarMateriales(request):
     materiales = Material.objects.all()
     paginator = Paginator(materiales, 10) 
@@ -160,6 +169,7 @@ def listarMateriales(request):
     }
     return render(request, 'listas/materiales.html', data)
 
+@permission_required('productos.change_material', login_url='login', raise_exception=True)
 def editarMaterial(request, id):
     material = Material.objects.get(id=id)
     formulario = MaterialForm(instance=material)
@@ -175,12 +185,14 @@ def editarMaterial(request, id):
     }
     return render(request, 'formulario.html', data)
 
+@permission_required('productos.delete_material', login_url='login', raise_exception=True)
 def eliminarMaterial(request, id):
     material = Material.objects.get(id=id)
     material.delete()
     messages.success(request, 'Material eliminado exitosamente.')
     return redirect('/productos/listarmateriales/')
 
+@permission_required('productos.add_cliente', login_url='login', raise_exception=True)
 def crearCliente(request):
     formulario = ClienteForm()
     if request.method == 'POST':
@@ -195,6 +207,7 @@ def crearCliente(request):
     }
     return render(request, 'formulario.html', data)
 
+@permission_required('productos.view_cliente', login_url='login', raise_exception=True)
 def listarClientes(request):
     clientes = Cliente.objects.all()
     paginator = Paginator(clientes, 10) 
@@ -206,6 +219,7 @@ def listarClientes(request):
     }
     return render(request, 'listas/clientes.html', data)
 
+@permission_required('productos.change_cliente', login_url='login', raise_exception=True)
 def editarCliente(request, id):
     cliente = Cliente.objects.get(id=id)
     formulario = ClienteForm(instance=cliente)
@@ -221,12 +235,14 @@ def editarCliente(request, id):
     }
     return render(request, 'formulario.html', data)
 
+@permission_required('productos.delete_cliente', login_url='login', raise_exception=True)
 def eliminarCliente(request, id):
     cliente = Cliente.objects.get(id=id)
     cliente.delete()
     messages.success(request, 'Cliente eliminado exitosamente.')
     return redirect('/productos/listarclientes/')
 
+@permission_required('productos.add_vestimenta', login_url='login', raise_exception=True)
 def crearVestimenta(request):
     formulario = VestimentaForm()
     if request.method == 'POST':
@@ -241,6 +257,7 @@ def crearVestimenta(request):
     }
     return render(request, 'formulario.html', data)
 
+@permission_required('productos.view_vestimenta', login_url='login', raise_exception=True)
 def listarVestimentas(request):
     vestimentas = Vestimenta.objects.all()
     paginator = Paginator(vestimentas, 10) 
@@ -252,6 +269,7 @@ def listarVestimentas(request):
     }
     return render(request, 'listas/vestimentas.html', data)
 
+@permission_required('productos.change_vestimenta', login_url='login', raise_exception=True)
 def editarVestimenta(request, id):
     vestimenta = Vestimenta.objects.get(id=id)
     formulario = VestimentaForm(instance=vestimenta)
@@ -267,12 +285,14 @@ def editarVestimenta(request, id):
     }
     return render(request, 'formulario.html', data)
 
+@permission_required('productos.delete_vestimenta', login_url='login', raise_exception=True)
 def eliminarVestimenta(request, id):
     vestimenta = Vestimenta.objects.get(id=id)
     vestimenta.delete()
     messages.success(request, 'Vestimenta eliminada exitosamente.')
     return redirect('/productos/listarvestimentas/')
 
+@permission_required('productos.add_tipopago', login_url='login', raise_exception=True)
 def crearTipoPago(request):
     formulario = TipoPagoForm()
     if request.method == 'POST':
@@ -287,6 +307,7 @@ def crearTipoPago(request):
     }
     return render(request, 'formulario.html', data)
 
+@permission_required('productos.view_tipopago', login_url='login', raise_exception=True)
 def listarTipoPagos(request):
     tipos_pago = TipoPago.objects.all()
     paginator = Paginator(tipos_pago, 10) 
@@ -298,6 +319,7 @@ def listarTipoPagos(request):
     }
     return render(request, 'listas/tipos_pago.html', data)
 
+@permission_required('productos.change_tipopago', login_url='login', raise_exception=True)
 def editarTipoPago(request, id):
     tipo_pago = TipoPago.objects.get(id=id)
     formulario = TipoPagoForm(instance=tipo_pago)
@@ -313,6 +335,7 @@ def editarTipoPago(request, id):
     }
     return render(request, 'formulario.html', data)
 
+@permission_required('productos.delete_tipopago', login_url='login', raise_exception=True)
 def eliminarTipoPago(request, id):
     tipo_pago = TipoPago.objects.get(id=id)
     tipo_pago.delete()
