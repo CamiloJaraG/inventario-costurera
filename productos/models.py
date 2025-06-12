@@ -33,7 +33,7 @@ class TipoPago(models.Model):
         db_table = 'tipos_pago'
         verbose_name = "Tipo de Pago"
         verbose_name_plural = "Tipos de Pago"
-
+#aca empieza modelos pete
 class TipoVestimenta(models.Model):
     tipo = models.CharField(max_length=50, unique=True)
 
@@ -44,6 +44,18 @@ class TipoVestimenta(models.Model):
         db_table = 'tipos_vestimentas'
         verbose_name = "Tipo de Vestimenta"
         verbose_name_plural = "Tipos de Vestimentas"
+
+class TipoPedido(models.Model):
+    tipo = models.CharField(max_length=50, unique=True)
+
+    def __str__(self):
+        return self.tipo
+    
+    class Meta:
+        db_table = 'tipos_pedidos'
+        verbose_name = "Tipo de Pedido"
+        verbose_name_plural = "Tipos de Pedidos"
+#aca termina modelos pete
 
 
 """ Entidades débiles """

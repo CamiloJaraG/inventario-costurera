@@ -192,6 +192,57 @@ def eliminarTipoVestimenta(request, id):
     tipo_vestimenta.delete()
     messages.success(request, 'Tipo de vestimenta eliminado exitosamente.')
     return redirect('/productos/listartipovestimentas/')
+
+
+@permission_required('productos.add_tipopedido', login_url='login', raise_exception=True)
+def crearTipoPedido(request):
+    formulario = TipoPedidoForm()
+    if request.method == 'POST':
+        formulario = TipoPedidoForm(request.POST)
+        if formulario.is_valid():
+            formulario.save()
+            messages.success(request, 'Tipo de Pedido creado exitosamente.')
+    data = {
+        'titulo': 'Crear tipo de pedido',
+        'formulario': formulario,
+        'ruta': '/productos/listartipopedidos/',
+    }
+    return render(request, 'formulario.html', data)
+
+@permission_required('productos.view_tipopedido', login_url='login', raise_exception=True)
+def listarTipoPedidos(request):
+    tipos_pedidos = TipoPedido.objects.all()
+    paginator = Paginator(tipos_pedidos, 10) 
+    pageNum = request.GET.get('page')
+    pageObj = paginator.get_page(pageNum)
+    data = {
+        'titulo': 'Lista de tipos de pedidos',
+        'pageObj': pageObj,
+    }
+    return render(request, 'listas/tipos_pedidos.html', data)
+
+@permission_required('productos.change_tipopedido', login_url='login', raise_exception=True)
+def editarTipoPedido(request, id):
+    tipo_pedido = TipoPedido.objects.get(id=id)
+    formulario = TipoPedidoForm(instance=tipo_pedido)
+    if request.method == 'POST':
+        formulario = TipoPedidoForm(request.POST, instance=tipo_pedido)
+        if formulario.is_valid():
+            formulario.save()
+            messages.success(request, 'Tipo de pedido editado exitosamente.')
+    data = {
+        'titulo': 'Editar tipo de pedido',
+        'formulario': formulario,
+        'ruta': '/productos/listartipopedidos/',
+    }
+    return render(request, 'formulario.html', data)
+
+@permission_required('productos.delete_tipopedido', login_url='login', raise_exception=True)
+def eliminarTipoPedido(request, id):
+    tipo_pedido = TipoPedido.objects.get(id=id)
+    tipo_pedido.delete()
+    messages.success(request, 'Tipo de pedido eliminado exitosamente.')
+    return redirect('/productos/listartipopedidos/')
 #aca termina codigo pete
 
 @permission_required('productos.add_material', login_url='login', raise_exception=True)

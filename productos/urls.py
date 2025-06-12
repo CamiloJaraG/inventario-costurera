@@ -33,4 +33,8 @@ urlpatterns = [
     path('listartipovestimentas/', listarTipoVestimentas, name='listar_tipo_vestimentas'),
     path('editartipovestimenta/<int:id>/', editarTipoVestimenta, name='editar_tipo_vestimenta'),
     path('eliminartipovestimenta/<int:id>/', eliminarTipoVestimenta, name='eliminar_tipo_vestimenta'),
+    path('creartipopedido/', crearTipoPedido, name='crear_tipo_pedido'),
+    path('listartipopedidos/', listarTipoPedidos, name='listar_tipo_pedidos'),
+    path('editartipopedido/<int:id>/', editarTipoPedido, name='editar_tipo_pedido'),
+    path('eliminartipopedido/<int:id>/', eliminarTipoPedido, name='eliminar_tipo_pedido'),
 ]

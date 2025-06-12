@@ -40,7 +40,7 @@ class TipoPagoForm(forms.ModelForm):
         widgets = {
             'tipo': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingrese el tipo de pago'}),
         }
-
+#aca empieaza fomras pete
 class TipoVestimentaForm(forms.ModelForm):
     class Meta:
         model = TipoVestimenta
@@ -52,6 +52,17 @@ class TipoVestimentaForm(forms.ModelForm):
             'tipo': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingrese el tipo de vestimenta'}),
         }
 
+class TipoPedidoForm(forms.ModelForm):
+    class Meta:
+        model = TipoPedido
+        fields = ['tipo']
+        labels = {
+            'tipo': 'Tipo de Pedido',
+        }
+        widgets = {
+            'tipo': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingrese el tipo de pedido'}),
+        }
+#aca termina faorem pete
 """ Formularios de entidades """
 class ClienteForm(forms.ModelForm):
     class Meta:
