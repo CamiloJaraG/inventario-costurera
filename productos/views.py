@@ -142,6 +142,58 @@ def eliminarTipoMaterial(request, id):
     messages.success(request, 'Tipo de material eliminado exitosamente.')
     return redirect('/productos/listartipomateriales/')
 
+#aca empieza codigo pete
+@permission_required('productos.add_tipovestimenta', login_url='login', raise_exception=True)
+def crearTipoVestimenta(request):
+    formulario = TipoVestimentaForm()
+    if request.method == 'POST':
+        formulario = TipoVestimentaForm(request.POST)
+        if formulario.is_valid():
+            formulario.save()
+            messages.success(request, 'Tipo de Vestimenta creado exitosamente.')
+    data = {
+        'titulo': 'Crear tipo de vestimenta',
+        'formulario': formulario,
+        'ruta': '/productos/listartipovestimentas/',
+    }
+    return render(request, 'formulario.html', data)
+
+@permission_required('productos.view_tipovestimenta', login_url='login', raise_exception=True)
+def listarTipoVestimentas(request):
+    tipos_vestimentas = TipoVestimenta.objects.all()
+    paginator = Paginator(tipos_vestimentas, 10) 
+    pageNum = request.GET.get('page')
+    pageObj = paginator.get_page(pageNum)
+    data = {
+        'titulo': 'Lista de tipos de vestimenta',
+        'pageObj': pageObj,
+    }
+    return render(request, 'listas/tipos_vestimentas.html', data)
+
+@permission_required('productos.change_tipovestimenta', login_url='login', raise_exception=True)
+def editarTipoVestimenta(request, id):
+    tipo_vestimenta = TipoVestimenta.objects.get(id=id)
+    formulario = TipoVestimentaForm(instance=tipo_vestimenta)
+    if request.method == 'POST':
+        formulario = TipoVestimentaForm(request.POST, instance=tipo_vestimenta)
+        if formulario.is_valid():
+            formulario.save()
+            messages.success(request, 'Tipo de vestimenta editado exitosamente.')
+    data = {
+        'titulo': 'Editar tipo de vestimenta',
+        'formulario': formulario,
+        'ruta': '/productos/listartipovestimentas/',
+    }
+    return render(request, 'formulario.html', data)
+
+@permission_required('productos.delete_tipovestimenta', login_url='login', raise_exception=True)
+def eliminarTipoVestimenta(request, id):
+    tipo_vestimenta = TipoVestimenta.objects.get(id=id)
+    tipo_vestimenta.delete()
+    messages.success(request, 'Tipo de vestimenta eliminado exitosamente.')
+    return redirect('/productos/listartipovestimentas/')
+#aca termina codigo pete
+
 @permission_required('productos.add_material', login_url='login', raise_exception=True)
 def crearMaterial(request):
     formulario = MaterialForm()

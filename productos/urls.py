@@ -28,4 +28,9 @@ urlpatterns = [
     path('listarmateriales/', listarMateriales, name='listar_materiales'),
     path('editarmaterial/<int:id>/', editarMaterial, name='editar_material'),
     path('eliminarmaterial/<int:id>/', eliminarMaterial, name='eliminar_material'),
+
+    path('creartipovestimenta/', crearTipoVestimenta, name='crear_tipo_vestimenta'),
+    path('listartipovestimentas/', listarTipoVestimentas, name='listar_tipo_vestimentas'),
+    path('editartipovestimenta/<int:id>/', editarTipoVestimenta, name='editar_tipo_vestimenta'),
+    path('eliminartipovestimenta/<int:id>/', eliminarTipoVestimenta, name='eliminar_tipo_vestimenta'),
 ]

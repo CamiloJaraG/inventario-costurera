@@ -34,6 +34,17 @@ class TipoPago(models.Model):
         verbose_name = "Tipo de Pago"
         verbose_name_plural = "Tipos de Pago"
 
+class TipoVestimenta(models.Model):
+    tipo = models.CharField(max_length=50, unique=True)
+
+    def __str__(self):
+        return self.tipo
+    
+    class Meta:
+        db_table = 'tipos_vestimentas'
+        verbose_name = "Tipo de Vestimenta"
+        verbose_name_plural = "Tipos de Vestimentas"
+
 
 """ Entidades débiles """
 class Material(models.Model):
