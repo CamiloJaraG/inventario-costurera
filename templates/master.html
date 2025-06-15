@@ -30,38 +30,46 @@
                             <i class="fa-solid fa-boxes"></i> Inventario
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="dropdownInventario">
+                            {% if perms.productos.view_vestimenta %}
                             <li>
                                 <a class="dropdown-item" href="{% url 'listar_vestimentas' %}">
                                     <i class="fa-solid fa-shirt"></i>
                                     Vestimentas
                                 </a>
-                            </li>
+                            </li>    
+                            {% endif %}
+                            {% if perms.productos.view_material %}
                             <li>
                                 <a class="dropdown-item" href="{% url 'listar_materiales' %}">
                                     <i class="fa-solid fa-cubes"></i>
                                     Materiales
                                 </a>
-                            </li>
-                            <!--aca empieza codigo pete 2-->
+                            </li>    
+                            {% endif %}
+                            {% if perms.productos.view_pedido %}
                             <li>
                                 <a class="dropdown-item" href="{% url 'listar_pedidos' %}">
-                                    <i class="fa-solid fa-shirt"></i>
+                                    <i class="fa-solid fa-truck-fast"></i>
                                     Pedidos
                                 </a>
-                            </li>
+                            </li>    
+                            {% endif %}
+                            {% if perms.productos.view_producto %}
                             <li>
                                 <a class="dropdown-item" href="{% url 'listar_productos' %}">
                                     <i class="fa-solid fa-shirt"></i>
                                     Productos
                                 </a>
                             </li>
+                            {% endif %}
+                            {% if perms.productos.view_venta %}
                             <li>
                                 <a class="dropdown-item" href="{% url 'listar_ventas' %}">
                                     <i class="fa-solid fa-shirt"></i>
                                     Ventas
                                 </a>
-                            </li>
-                            <!--aca termina codigo pete2-->
+                            </li>    
+                            {% endif %}
                         </ul>
                     </li>
                     <li class="nav-item dropdown">
@@ -70,44 +78,54 @@
                             <i class="fa-solid fa-list"></i> Listas
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                            {% if perms.productos.view_tipos_cliente %}
                             <li>
                                 <a class="dropdown-item" href="{% url 'listar_tipo_clientes' %}">
                                     <i class="fa-solid fa-users-gear"></i>
                                     Tipos de clientes
                                 </a>
-                            </li>
+                            </li>    
+                            {% endif %}
+                            {% if perms.productos.view_cliente %}
                             <li>
                                 <a class="dropdown-item" href="{% url 'listar_clientes' %}">
                                     <i class="fa-solid fa-users"></i>
                                     Clientes
                                 </a>
-                            </li>
+                            </li>    
+                            {% endif %}
+                            {% if perms.productos.view_tipo_pago %}
                             <li>
                                 <a class="dropdown-item" href="{% url 'listar_tipo_pagos' %}">
                                     <i class="fa-solid fa-credit-card"></i>
                                     Tipos de pago
                                 </a>
-                            </li>
+                            </li>    
+                            {% endif %}
+                            {% if perms.productos.view_tipos_materiales %}
                             <li>
                                 <a class="dropdown-item" href="{% url 'listar_tipo_materiales' %}">
                                     <i class="fa-solid fa-tools"></i>
                                     Tipos de materiales
                                 </a>
-                            </li>
-                            <!--aca empieza codigo pete-->
+                            </li>    
+                            {% endif %}
+                            {% if perms.productos.view_tipos_vestimentas %}
                             <li>
                                 <a class="dropdown-item" href="{% url 'listar_tipo_vestimentas' %}">
                                     <i class="fa-solid fa-cubes"></i>
                                     Tipo vestimentas
                                 </a>
-                            </li>
+                            </li>    
+                            {% endif %}
+                            {% if perms.productos.view_tipos_pedidos %}
                             <li>
                                 <a class="dropdown-item" href="{% url 'listar_tipo_pedidos' %}">
                                     <i class="fa-solid fa-cubes"></i>
                                     Tipo pedidos
                                 </a>
-                            </li>
-                            <!--aca termina codigo pete-->
+                            </li>    
+                            {% endif %}
                         </ul>
                     </li>
                 </ul>
@@ -130,6 +148,7 @@
                         {% endif %}
                     </ul>
                 </li>
+                {% if user.is_authenticated %}
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle text-white user-dropdown" href="#" id="dropdownUser"
                         role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -138,7 +157,8 @@
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownUser">
                         <li><a class="dropdown-item" href="{% url 'logout' %}"><i class="fa-solid fa-right-from-bracket"></i>Cerrar sesión</a></li>
                     </ul>
-                </li>
+                </li>   
+                {% endif %}
             </ul>
         </div>
     </nav>

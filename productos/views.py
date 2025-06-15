@@ -142,7 +142,6 @@ def eliminarTipoMaterial(request, id):
     messages.success(request, 'Tipo de material eliminado exitosamente.')
     return redirect('/productos/listartipomateriales/')
 
-#aca empieza codigo pete
 @permission_required('productos.add_tipovestimenta', login_url='login', raise_exception=True)
 def crearTipoVestimenta(request):
     formulario = TipoVestimentaForm()
@@ -243,7 +242,6 @@ def eliminarTipoPedido(request, id):
     tipo_pedido.delete()
     messages.success(request, 'Tipo de pedido eliminado exitosamente.')
     return redirect('/productos/listartipopedidos/')
-#aca termina codigo pete
 
 @permission_required('productos.add_material', login_url='login', raise_exception=True)
 def crearMaterial(request):
@@ -445,7 +443,6 @@ def eliminarTipoPago(request, id):
     messages.success(request, 'Tipo de pago eliminado exitosamente.')
     return redirect('/productos/listartipopagos/')
 
-#aca empieza vistas pete2
 @permission_required('productos.add_producto', login_url='login', raise_exception=True)
 def crearProducto(request):
     formulario = ProductoForm()
@@ -597,4 +594,3 @@ def eliminarVenta(request, id):
     venta.delete()
     messages.success(request, 'Venta eliminada exitosamente.')
     return redirect('/productos/listarventas/')
-#aca termina vistas petes2
