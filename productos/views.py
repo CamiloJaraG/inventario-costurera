@@ -142,6 +142,109 @@ def eliminarTipoMaterial(request, id):
     messages.success(request, 'Tipo de material eliminado exitosamente.')
     return redirect('/productos/listartipomateriales/')
 
+#aca empieza codigo pete
+@permission_required('productos.add_tipovestimenta', login_url='login', raise_exception=True)
+def crearTipoVestimenta(request):
+    formulario = TipoVestimentaForm()
+    if request.method == 'POST':
+        formulario = TipoVestimentaForm(request.POST)
+        if formulario.is_valid():
+            formulario.save()
+            messages.success(request, 'Tipo de Vestimenta creado exitosamente.')
+    data = {
+        'titulo': 'Crear tipo de vestimenta',
+        'formulario': formulario,
+        'ruta': '/productos/listartipovestimentas/',
+    }
+    return render(request, 'formulario.html', data)
+
+@permission_required('productos.view_tipovestimenta', login_url='login', raise_exception=True)
+def listarTipoVestimentas(request):
+    tipos_vestimentas = TipoVestimenta.objects.all()
+    paginator = Paginator(tipos_vestimentas, 10) 
+    pageNum = request.GET.get('page')
+    pageObj = paginator.get_page(pageNum)
+    data = {
+        'titulo': 'Lista de tipos de vestimenta',
+        'pageObj': pageObj,
+    }
+    return render(request, 'listas/tipos_vestimentas.html', data)
+
+@permission_required('productos.change_tipovestimenta', login_url='login', raise_exception=True)
+def editarTipoVestimenta(request, id):
+    tipo_vestimenta = TipoVestimenta.objects.get(id=id)
+    formulario = TipoVestimentaForm(instance=tipo_vestimenta)
+    if request.method == 'POST':
+        formulario = TipoVestimentaForm(request.POST, instance=tipo_vestimenta)
+        if formulario.is_valid():
+            formulario.save()
+            messages.success(request, 'Tipo de vestimenta editado exitosamente.')
+    data = {
+        'titulo': 'Editar tipo de vestimenta',
+        'formulario': formulario,
+        'ruta': '/productos/listartipovestimentas/',
+    }
+    return render(request, 'formulario.html', data)
+
+@permission_required('productos.delete_tipovestimenta', login_url='login', raise_exception=True)
+def eliminarTipoVestimenta(request, id):
+    tipo_vestimenta = TipoVestimenta.objects.get(id=id)
+    tipo_vestimenta.delete()
+    messages.success(request, 'Tipo de vestimenta eliminado exitosamente.')
+    return redirect('/productos/listartipovestimentas/')
+
+
+@permission_required('productos.add_tipopedido', login_url='login', raise_exception=True)
+def crearTipoPedido(request):
+    formulario = TipoPedidoForm()
+    if request.method == 'POST':
+        formulario = TipoPedidoForm(request.POST)
+        if formulario.is_valid():
+            formulario.save()
+            messages.success(request, 'Tipo de Pedido creado exitosamente.')
+    data = {
+        'titulo': 'Crear tipo de pedido',
+        'formulario': formulario,
+        'ruta': '/productos/listartipopedidos/',
+    }
+    return render(request, 'formulario.html', data)
+
+@permission_required('productos.view_tipopedido', login_url='login', raise_exception=True)
+def listarTipoPedidos(request):
+    tipos_pedidos = TipoPedido.objects.all()
+    paginator = Paginator(tipos_pedidos, 10) 
+    pageNum = request.GET.get('page')
+    pageObj = paginator.get_page(pageNum)
+    data = {
+        'titulo': 'Lista de tipos de pedidos',
+        'pageObj': pageObj,
+    }
+    return render(request, 'listas/tipos_pedidos.html', data)
+
+@permission_required('productos.change_tipopedido', login_url='login', raise_exception=True)
+def editarTipoPedido(request, id):
+    tipo_pedido = TipoPedido.objects.get(id=id)
+    formulario = TipoPedidoForm(instance=tipo_pedido)
+    if request.method == 'POST':
+        formulario = TipoPedidoForm(request.POST, instance=tipo_pedido)
+        if formulario.is_valid():
+            formulario.save()
+            messages.success(request, 'Tipo de pedido editado exitosamente.')
+    data = {
+        'titulo': 'Editar tipo de pedido',
+        'formulario': formulario,
+        'ruta': '/productos/listartipopedidos/',
+    }
+    return render(request, 'formulario.html', data)
+
+@permission_required('productos.delete_tipopedido', login_url='login', raise_exception=True)
+def eliminarTipoPedido(request, id):
+    tipo_pedido = TipoPedido.objects.get(id=id)
+    tipo_pedido.delete()
+    messages.success(request, 'Tipo de pedido eliminado exitosamente.')
+    return redirect('/productos/listartipopedidos/')
+#aca termina codigo pete
+
 @permission_required('productos.add_material', login_url='login', raise_exception=True)
 def crearMaterial(request):
     formulario = MaterialForm()
@@ -341,3 +444,157 @@ def eliminarTipoPago(request, id):
     tipo_pago.delete()
     messages.success(request, 'Tipo de pago eliminado exitosamente.')
     return redirect('/productos/listartipopagos/')
+
+#aca empieza vistas pete2
+@permission_required('productos.add_producto', login_url='login', raise_exception=True)
+def crearProducto(request):
+    formulario = ProductoForm()
+    if request.method == 'POST':
+        formulario = ProductoForm(request.POST)
+        if formulario.is_valid():
+            formulario.save()
+            messages.success(request, 'Producto creado exitosamente.')
+    data = {
+        'titulo': 'Crear Producto',
+        'formulario': formulario,
+        'ruta': '/productos/listarproductos/',
+    }
+    return render(request, 'formulario.html', data)
+
+@permission_required('productos.view_producto', login_url='login', raise_exception=True)
+def listarProductos(request):
+    producto = Producto.objects.all()
+    paginator = Paginator(producto, 10) 
+    pageNum = request.GET.get('page')
+    pageObj = paginator.get_page(pageNum)
+    data = {
+        'titulo': 'Lista de producto',
+        'pageObj': pageObj,
+    }
+    return render(request, 'listas/productos.html', data)
+
+@permission_required('productos.change_producto', login_url='login', raise_exception=True)
+def editarProducto(request, id):
+    producto = Producto.objects.get(id=id)
+    formulario = ProductoForm(instance=producto)
+    if request.method == 'POST':
+        formulario = ProductoForm(request.POST, instance=producto)
+        if formulario.is_valid():
+            formulario.save()
+            messages.success(request, 'Producto editado exitosamente.')
+    data = {
+        'titulo': 'Editar Producto',
+        'formulario': formulario,
+        'ruta': '/productos/listarproductos/',
+    }
+    return render(request, 'formulario.html', data)
+
+@permission_required('productos.delete_producto', login_url='login', raise_exception=True)
+def eliminarProducto(request, id):
+    producto = Producto.objects.get(id=id)
+    producto.delete()
+    messages.success(request, 'Producto eliminado exitosamente.')
+    return redirect('/productos/listarproductos/')
+
+
+@permission_required('productos.add_pedido', login_url='login', raise_exception=True)
+def crearPedido(request):
+    formulario = PedidoForm()
+    if request.method == 'POST':
+        formulario = PedidoForm(request.POST)
+        if formulario.is_valid():
+            formulario.save()
+            messages.success(request, 'Pedido creado exitosamente.')
+    data = {
+        'titulo': 'Crear Pedido',
+        'formulario': formulario,
+        'ruta': '/productos/listarpedidos/',
+    }
+    return render(request, 'formulario.html', data)
+
+@permission_required('productos.view_pedido', login_url='login', raise_exception=True)
+def listarPedidos(request):
+    pedido = Pedido.objects.all()
+    paginator = Paginator(pedido, 10) 
+    pageNum = request.GET.get('page')
+    pageObj = paginator.get_page(pageNum)
+    data = {
+        'titulo': 'Lista de pedidos',
+        'pageObj': pageObj,
+    }
+    return render(request, 'listas/pedidos.html', data)
+
+@permission_required('productos.change_pedido', login_url='login', raise_exception=True)
+def editarPedido(request, id):
+    pedido = Pedido.objects.get(id=id)
+    formulario = PedidoForm(instance=pedido)
+    if request.method == 'POST':
+        formulario = PedidoForm(request.POST, instance=pedido)
+        if formulario.is_valid():
+            formulario.save()
+            messages.success(request, 'Pedido editado exitosamente.')
+    data = {
+        'titulo': 'Editar Pedido',
+        'formulario': formulario,
+        'ruta': '/productos/listarpedidos/',
+    }
+    return render(request, 'formulario.html', data)
+
+@permission_required('productos.delete_pedido', login_url='login', raise_exception=True)
+def eliminarPedido(request, id):
+    pedido = Pedido.objects.get(id=id)
+    pedido.delete()
+    messages.success(request, 'Pedido eliminado exitosamente.')
+    return redirect('/productos/listarpedidos/')
+
+
+@permission_required('productos.add_venta', login_url='login', raise_exception=True)
+def crearVenta(request):
+    formulario = VentaForm()
+    if request.method == 'POST':
+        formulario = VentaForm(request.POST)
+        if formulario.is_valid():
+            formulario.save()
+            messages.success(request, 'Venta creada exitosamente.')
+    data = {
+        'titulo': 'Crear Venta',
+        'formulario': formulario,
+        'ruta': '/productos/listarventas/',
+    }
+    return render(request, 'formulario.html', data)
+
+@permission_required('productos.view_venta', login_url='login', raise_exception=True)
+def listarVentas(request):
+    venta = Venta.objects.all()
+    paginator = Paginator(venta, 10) 
+    pageNum = request.GET.get('page')
+    pageObj = paginator.get_page(pageNum)
+    data = {
+        'titulo': 'Lista de ventas',
+        'pageObj': pageObj,
+    }
+    return render(request, 'listas/ventas.html', data)
+
+@permission_required('productos.change_venta', login_url='login', raise_exception=True)
+def editarVenta(request, id):
+    venta = Venta.objects.get(id=id)
+    formulario = VentaForm(instance=venta)
+    if request.method == 'POST':
+        formulario = VentaForm(request.POST, instance=venta)
+        if formulario.is_valid():
+            formulario.save()
+            messages.success(request, 'Venta editada exitosamente.')
+    data = {
+        'titulo': 'Editar Venta',
+        'formulario': formulario,
+        'ruta': '/productos/listarventas/',
+    }
+    return render(request, 'formulario.html', data)
+
+@permission_required('productos.delete_venta', login_url='login', raise_exception=True)
+def eliminarVenta(request, id):
+    venta = Venta.objects.get(id=id)
+    venta.delete()
+    messages.success(request, 'Venta eliminada exitosamente.')
+    return redirect('/productos/listarventas/')
+#aca termina vistas petes2
