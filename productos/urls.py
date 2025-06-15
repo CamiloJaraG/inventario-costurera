@@ -37,4 +37,17 @@ urlpatterns = [
     path('listartipopedidos/', listarTipoPedidos, name='listar_tipo_pedidos'),
     path('editartipopedido/<int:id>/', editarTipoPedido, name='editar_tipo_pedido'),
     path('eliminartipopedido/<int:id>/', eliminarTipoPedido, name='eliminar_tipo_pedido'),
+    
+    path('crearproducto/', crearProducto, name='crear_producto'),
+    path('listarproductos/', listarProductos, name='listar_productos'),
+    path('editarproducto/<int:id>/', editarProducto, name='editar_producto'),
+    path('eliminarproducto/<int:id>/', eliminarProducto, name='eliminar_producto'),
+    path('crearpedido/', crearPedido, name='crear_pedido'),
+    path('listarpedidos/', listarPedidos, name='listar_pedidos'),
+    path('editarpedido/<int:id>/', editarPedido, name='editar_pedido'),
+    path('eliminarpedido/<int:id>/', eliminarPedido, name='eliminar_pedido'),
+    path('crearventa/', crearVenta, name='crear_venta'),
+    path('listarventas/', listarVentas, name='listar_ventas'),
+    path('editarventa/<int:id>/', editarVenta, name='editar_venta'),
+    path('eliminarventa/<int:id>/', eliminarVenta, name='eliminar_venta'),
 ]

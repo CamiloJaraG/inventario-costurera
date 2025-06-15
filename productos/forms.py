@@ -78,7 +78,7 @@ class ClienteForm(forms.ModelForm):
             'nombre': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingrese su nombre'}),
             'apellido': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingrese su apellido'}),
             'correo': forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'Ingrese su correo electrónico'}),
-            'telefono': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingrese su número de teléfono'}),
+            'telefono': forms.TextInput(attrs={'class': 'solo-letras', 'placeholder': 'Ingrese su número de teléfono'}),
         }
 
 class MaterialForm(forms.ModelForm):
@@ -117,3 +117,64 @@ class VestimentaForm(forms.ModelForm):
             'cliente': forms.Select(attrs={'class': 'form-control'}),
         }
 
+#aca empiz form 2s
+class ProductoForm(forms.ModelForm):
+    class Meta:
+        model = Producto
+        fields = ['nombre', 'cantidad', 'fecha_produccion', 'material', 'vestimenta']
+        labels = {
+            'nombre': 'Nombre del Producto',
+            'cantidad': 'Cantidad',
+            'fecha_produccion': 'Fecha de Produccion',
+            'material': 'Material utilizado',
+            'vestimenta':'Vestimenta asociada',
+        }
+        widgets = {
+            'nombre': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingrese el nombre del producto'}),
+            'cantidad': forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Ingrese la cantidad'}),
+            'fecha_produccion': forms.DateInput(attrs={'class': 'form-control', 'placeholder': 'Seleccione la fecha de produccion', 'type': 'date'}, format='%Y-%m-%d'),
+            'material': forms.Select(attrs={'class': 'form-control'}),
+            'vestimenta': forms.Select(attrs={'class': 'form-control'}),
+        }
+
+
+class PedidoForm(forms.ModelForm):
+    class Meta:
+        model = Pedido
+        fields = ['nombre', 'cantidad', 'fecha_pedido', 'producto', 'cliente', 'tipo_pedido']
+        labels = {
+            'nombre': 'Nombre del pedido',
+            'cantidad': 'Cantidad',
+            'fecha_pedido': 'Fecha del Pedido',
+            'producto':'Producto asociado',
+            'cliente':'Cliente asociado',
+            'tipo_pedido': 'Tipo de pedido',
+        }
+        widgets = {
+            'nombre': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingrese el nombre del pedido'}),
+            'cantidad': forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Ingrese la cantidad'}),
+            'fecha_pedido': forms.DateInput(attrs={'class': 'form-control', 'placeholder': 'Seleccione la fecha de pedido', 'type': 'date'}, format='%Y-%m-%d'),
+            'producto': forms.Select(attrs={'class': 'form-control'}),
+            'cliente': forms.Select(attrs={'class': 'form-control'}),
+            'tipo_pedido': forms.Select(attrs={'class': 'form-control'}),
+        }
+
+class VentaForm(forms.ModelForm):
+    class Meta:
+        model = Venta
+        fields = ['descripcion', 'precio', 'fecha_venta', 'pedido', 'tipo_pago']
+        labels = {
+            'descripcion': 'Descripción',
+            'precio': 'Precio',
+            'fecha_venta': 'Fecha de Venta',
+            'pedido': 'Pedido Asociado',
+            'tipo_pago': 'Tipo de Pago',
+        }
+        widgets = {
+            'descripcion': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Ingrese una descripción'}),
+            'precio': forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Ingrese el precio'}),
+            'fecha_venta': forms.DateInput(attrs={'class': 'form-control', 'placeholder': 'Seleccione la fecha de venta', 'type': 'date'}, format='%Y-%m-%d'),
+            'pedido': forms.Select(attrs={'class': 'form-control'}),
+            'tipo_pago': forms.Select(attrs={'class': 'form-control'}),
+        }
+#aca termina cf 2
