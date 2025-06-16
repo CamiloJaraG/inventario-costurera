@@ -39,6 +39,7 @@ def inicio(request):
     }
     return render(request, 'master.html', data)
 
+#tipocliente
 @permission_required('productos.add_tipocliente', login_url='login', raise_exception=True)
 def crearTipoCliente(request):
     formulario = TipoClienteForm()
@@ -89,6 +90,7 @@ def eliminarTipoCliente(request, id):
     messages.success(request, 'Tipo de cliente eliminado exitosamente.')
     return redirect('/productos/listartipoclientes/')
 
+#tipomaterial
 @permission_required('productos.add_tipomaterial', login_url='login', raise_exception=True)
 def crearTipoMaterial(request):
     formulario = TipoMaterialForm()
@@ -240,6 +242,7 @@ def eliminarTipoPedido(request, id):
     messages.success(request, 'Tipo de pedido eliminado exitosamente.')
     return redirect('/productos/listartipopedidos/')
 
+# material
 @permission_required('productos.add_material', login_url='login', raise_exception=True)
 def crearMaterial(request):
     formulario = MaterialForm()
@@ -290,6 +293,7 @@ def eliminarMaterial(request, id):
     messages.success(request, 'Material eliminado exitosamente.')
     return redirect('/productos/listarmateriales/')
 
+#cliente
 @permission_required('productos.add_cliente', login_url='login', raise_exception=True)
 def crearCliente(request):
     formulario = ClienteForm()
@@ -340,6 +344,7 @@ def eliminarCliente(request, id):
     messages.success(request, 'Cliente eliminado exitosamente.')
     return redirect('/productos/listarclientes/')
 
+#vestimenta
 @permission_required('productos.add_vestimenta', login_url='login', raise_exception=True)
 def crearVestimenta(request):
     formulario = VestimentaForm()

@@ -33,7 +33,7 @@ class TipoPago(models.Model):
         db_table = 'tipos_pago'
         verbose_name = "Tipo de Pago"
         verbose_name_plural = "Tipos de Pago"
-#aca empieza modelos pete
+
 class TipoVestimenta(models.Model):
     tipo = models.CharField(max_length=50, unique=True)
 
@@ -55,7 +55,7 @@ class TipoPedido(models.Model):
         db_table = 'tipos_pedidos'
         verbose_name = "Tipo de Pedido"
         verbose_name_plural = "Tipos de Pedidos"
-#aca termina modelos pete
+
 
 
 """ Entidades débiles """
@@ -80,6 +80,7 @@ class Cliente(models.Model):
     apellido = models.CharField(max_length=100)
     correo = models.EmailField(max_length=100, unique=True)
     telefono = models.CharField(max_length=15)
+    tipo_cliente = models.ForeignKey(TipoCliente, on_delete=models.PROTECT)
 
     def __str__(self):
         return f'{self.nombre} {self.apellido}'
@@ -92,7 +93,7 @@ class Cliente(models.Model):
 class Vestimenta(models.Model):
     nombre = models.CharField(max_length=100, unique=True)
     precio = models.DecimalField(max_digits=10, decimal_places=0)
-    cliente = models.ForeignKey(Cliente, on_delete=models.PROTECT, null=False)
+    tipo_vestimenta = models.ForeignKey(TipoVestimenta, on_delete=models.PROTECT)
 
     def __str__(self):
         return self.nombre
@@ -102,7 +103,7 @@ class Vestimenta(models.Model):
         verbose_name = "Vestimenta"
         verbose_name_plural = "Vestimentas"
 
-#aca empieza modelos pete debiles
+
 class Producto(models.Model):
     nombre = models.CharField(max_length=100, unique=True)
     cantidad = models.PositiveIntegerField()
@@ -148,4 +149,3 @@ class Venta(models.Model):
         db_table = 'venta'
         verbose_name = "Venta"
         verbose_name_plural = "Ventas"
-#aca termina modelos pete debiles

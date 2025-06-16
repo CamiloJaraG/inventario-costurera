@@ -67,18 +67,20 @@ class TipoPedidoForm(forms.ModelForm):
 class ClienteForm(forms.ModelForm):
     class Meta:
         model = Cliente
-        fields = ['nombre', 'apellido', 'correo', 'telefono']
+        fields = ['nombre', 'apellido', 'correo', 'telefono', 'tipo_cliente']
         labels = {
             'nombre': 'Nombre',
             'apellido': 'Apellido',
             'correo': 'Correo Electrónico',
             'telefono': 'Teléfono',
+            'tipo_cliente': 'Tipo de Cliente'
         }
         widgets = {
             'nombre': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingrese su nombre'}),
             'apellido': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingrese su apellido'}),
             'correo': forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'Ingrese su correo electrónico'}),
-            'telefono': forms.TextInput(attrs={'class': 'solo-letras', 'placeholder': 'Ingrese su número de teléfono'}),
+            'telefono': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingrese su número de teléfono'}),
+            'tipo_cliente': forms.Select(attrs={'class': 'form-control'}),
         }
 
 class MaterialForm(forms.ModelForm):
@@ -105,16 +107,16 @@ class MaterialForm(forms.ModelForm):
 class VestimentaForm(forms.ModelForm):
     class Meta:
         model = Vestimenta
-        fields = ['nombre', 'precio', 'cliente']
+        fields = ['nombre', 'precio', 'tipo_vestimenta']
         labels = {
             'nombre': 'Nombre de la Vestimenta',
             'precio': 'Precio',
-            'cliente': 'Cliente',
+            'tipo_vestimenta': 'Tipo de Vestimenta',
         }
         widgets = {
             'nombre': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingrese el nombre de la vestimenta'}),
             'precio': forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Ingrese el precio'}),
-            'cliente': forms.Select(attrs={'class': 'form-control'}),
+            'tipo_vestimenta': forms.Select(attrs={'class': 'form-control'}),
         }
 
 #aca empiz form 2s
