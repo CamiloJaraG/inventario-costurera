@@ -1,8 +1,8 @@
 {% extends 'master.html' %}
 {% load static %}
 {% block contenido %}
-    <div class="alert alert-primary text-center mt-3 p-3">
-        <h3>Lista de tipos de pago</h3>
+    <div class="alert alert-primary mt-3 p-3">
+        <h3><i class="fa-solid fa-list-ol"></i> Lista de tipos de pago</h3>
     </div>
     <div class="text-end mb-2">
         <a href="{% url 'crear_tipo_pago' %}" class="btn btn-success"><i class="fa-solid fa-plus"></i> Crear tipo de pago</a>
@@ -12,7 +12,7 @@
         <table class="table table-responsive table-bordered table-hover">
             <thead class="table-dark">
                 <tr>
-                    <th>Tipo de pago</th>
+                    <th><i class="fa-solid fa-credit-card"></i> Tipo de pago</th>
                     <th class="text-center"><i class="fa-solid fa-gear"></i> Opciones</th>
                 </tr>
             </thead>

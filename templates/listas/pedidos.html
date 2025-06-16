@@ -1,8 +1,8 @@
 {% extends 'master.html' %}
 {% load static %}
 {% block contenido %}
-    <div class="alert alert-primary text-center mt-3 p-3">
-        <h3>Lista de pedidos</h3>
+    <div class="alert alert-primary mt-3 p-3">
+        <h3><i class="fa-solid fa-list-ol"></i> Lista de pedidos</h3>
     </div>
     <div class="text-end mb-2">
         <a href="{% url 'crear_pedido' %}" class="btn btn-success"><i class="fa-solid fa-plus"></i> Crear pedido</a>
@@ -17,7 +17,7 @@
                     <th><i class="fa-solid fa-calendar-days"></i> Fecha pedido</th>
                     <th><i class="fa-solid fa-box"></i> Producto</th>
                     <th><i class="fa-solid fa-user"></i> Cliente</th>
-                    <th>Tipo pedido</th>
+                    <th><i class="fa-solid fa-truck-fast"></i> Tipo de pedido</th>
                     <th class="text-center"><i class="fa-solid fa-gear"></i> Opciones</th>
                 </tr>
             </thead>

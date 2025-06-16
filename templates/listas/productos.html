@@ -1,8 +1,8 @@
 {% extends 'master.html' %}
 {% load static %}
 {% block contenido %}
-    <div class="alert alert-primary text-center mt-3 p-3">
-        <h3>Inventario de productos</h3>
+    <div class="alert alert-primary mt-3 p-3">
+        <h3><i class="fa-solid fa-list-ol"></i> Inventario de productos</h3>
     </div>
     <div class="text-end mb-2">
         <a href="{% url 'crear_producto' %}" class="btn btn-success"><i class="fa-solid fa-plus"></i> Crear productos</a>
@@ -12,11 +12,11 @@
         <table class="table table-responsive table-bordered table-hover">
             <thead class="table-dark">
                 <tr>
-                    <th>Nombre</th>
-                    <th>Cantidad</th>
-                    <th>Fecha produccion</th>
-                    <th>Material</th>
-                    <th>Vestimenta</th>
+                    <th><i class="fa-solid fa-tag"></i> Nombre</th>
+                    <th><i class="fa-solid fa-boxes-stacked"></i> Cantidad</th>
+                    <th><i class="fa-solid fa-calendar-day"></i> Fecha de producción</th>
+                    <th><i class="fa-solid fa-cubes"></i> Material</th>
+                    <th><i class="fa-solid fa-shirt"></i> Vestimenta</th>
                     <th class="text-center"><i class="fa-solid fa-gear"></i> Opciones</th>
                 </tr>
             </thead>

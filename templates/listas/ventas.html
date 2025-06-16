@@ -1,8 +1,8 @@
 {% extends 'master.html' %}
 {% load static %}
 {% block contenido %}
-    <div class="alert alert-primary text-center mt-3 p-3">
-        <h3>Lista de ventas</h3>
+    <div class="alert alert-primary mt-3 p-3">
+        <h3><i class="fa-solid fa-list-ol"></i> Lista de ventas</h3>
     </div>
     <div class="text-end mb-2">
         <a href="{% url 'crear_venta' %}" class="btn btn-success"><i class="fa-solid fa-plus"></i> Crear Ventas</a>
@@ -12,11 +12,11 @@
         <table class="table table-responsive table-bordered table-hover">
             <thead class="table-dark">
                 <tr>
-                    <th>Descripcion</th>
-                    <th>Precio</th>
-                    <th>Fecha venta</th>
-                    <th>Pedido</th>
-                    <th>Tipo pago</th>
+                    <th><i class="fa-solid fa-align-justify"></i> Descripción</th>
+                    <th><i class="fa-solid fa-dollar-sign"></i> Precio</th>
+                    <th><i class="fa-solid fa-calendar-day"></i> Fecha de venta</th>
+                    <th><i class="fa-solid fa-truck-fast"></i> Pedido</th>
+                    <th><i class="fa-solid fa-credit-card"></i> Tipo de pago</th>
                     <th class="text-center"><i class="fa-solid fa-gear"></i> Opciones</th>
                 </tr>
             </thead>
