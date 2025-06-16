@@ -63,15 +63,15 @@ body {
 
 .table-edit {
   text-decoration: none !important;
-  background-color: #008e09 !important;
-  border-radius: 8px !important;
+  background-color: #00bc0d !important;
+  border-radius: 20px !important;
   padding: 8px 16px !important;
 }
 
 .table-delete {
   text-decoration: none !important;
   background-color: #ff4d4d !important;
-  border-radius: 8px !important;
+  border-radius: 20px !important;
   padding: 8px 16px !important;
   margin-left: 3px !important;
 }
