@@ -6,6 +6,14 @@ body {
   padding-top: 56px;
 }
 
+h5 a {
+  text-decoration: none !important;
+}
+
+h5 a:hover {
+  text-decoration: underline !important;
+}
+
 .logo a {
   text-decoration: none;
 }
