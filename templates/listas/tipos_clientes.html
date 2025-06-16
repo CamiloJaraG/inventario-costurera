@@ -19,7 +19,7 @@
             <tbody>
                 {% for item in pageObj %}
                     <tr>
-                        <td>{{ item.nombre }}</td>
+                        <td>{{ item.tipo }}</td>
                         <td nowrap class="col-2">
                             <a class="table-edit text-white" href="{% url 'editar_tipo_cliente' item.id %}">
                                 <i class="fa-solid fa-pen-to-square"></i> Editar
