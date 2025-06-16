@@ -116,7 +116,7 @@
                                 <li>
                                     <a class="dropdown-item" href="{% url 'listar_tipo_vestimentas' %}">
                                         <i class="fa-solid fa-cubes"></i>
-                                        Tipo vestimentas
+                                        Tipos de vestimentas
                                     </a>
                                 </li>
                                 {% endif %}
@@ -124,7 +124,7 @@
                                 <li>
                                     <a class="dropdown-item" href="{% url 'listar_tipo_pedidos' %}">
                                         <i class="fa-solid fa-cubes"></i>
-                                        Tipo pedidos
+                                        Tipos de pedidos
                                     </a>
                                 </li>
                                 {% endif %}
@@ -186,7 +186,28 @@
                 </div>
             </div>
         </nav>
-        <main class="container mt-2 pt-2">
+        <main class="container mt-2 pt-4">
+            {% if request.path == '/' or titulo == 'Inicio' %}
+            <!-- Contenido exclusivo para la página de inicio -->
+            <div class="alert alert-info display display-5 text-center">
+                Bienvenida al panel principal de Confecciones Leonor
+            </div>
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h2 class="text-center">Panel de control</h2>
+                    <div class="card-body">
+                    <p>Bienvenido al sistema de Confecciones Leonor. Desde aquí puedes ver alertas del inventario, gestionar productos y realizar operaciones clave.</p>
+                    <ul class="mb-0">
+                        <li>Revisa las notificaciones de stock bajo o agotado en el panel lateral derecho.</li>
+                        <li>Utiliza el menú superior para navegar por inventario, ventas y clientes.</li>
+                        <li>Recuerda cerrar sesión cuando termines.</li>
+                    </ul>
+                    </div>
+                </div>
+            </div>
+                
+
+            {% endif %}
             {% block contenido %}
             {% endblock %}
         </main>
