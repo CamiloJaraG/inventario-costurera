@@ -6,6 +6,7 @@
     </div>
     {% if perms.productos.add_cliente %}
     <div class="text-end mb-2">
+        <a href="#" class="btn btn-dark"><i class="fa-solid fa-file-excel"></i> Exportar Excel</a>
         <a href="{% url 'crear_cliente' %}" class="btn btn-success"><i class="fa-solid fa-plus"></i> Crear cliente</a>
     </div>    
     {% endif %}

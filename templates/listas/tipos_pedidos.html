@@ -4,9 +4,12 @@
     <div class="alert alert-primary mt-3 p-3">
         <h3><i class="fa-solid fa-list-ol"></i> Lista de tipos de pedidos</h3>
     </div>
+    {% if perms.productos.add_tipo_pedido %}
     <div class="text-end mb-2">
+        <a href="#" class="btn btn-dark"><i class="fa-solid fa-file-excel"></i> Exportar Excel</a>
         <a href="{% url 'crear_tipo_pedido' %}" class="btn btn-success"><i class="fa-solid fa-plus"></i> Crear tipo de pedido</a>
     </div>
+    {% endif %}
     {% if pageObj %}
     <div>
         <table class="table table-responsive table-bordered table-hover">
@@ -21,12 +24,16 @@
                     <tr>
                         <td>{{ item.tipo }}</td>
                         <td nowrap class="col-2">
+                            {% if perms.productos.change_tipo_pedido %}
                             <a class="table-edit text-white" href="{% url 'editar_tipo_pedido' item.id %}">
                                 <i class="fa-solid fa-pen-to-square"></i> Editar
                             </a>
+                            {% endif %}
+                            {% if perms.productos.delete_tipo_pedido %}
                             <a class="table-delete text-white" href="#" onclick="eliminar('{{ item.id }}')">
                                 <i class="fa-solid fa-trash"></i> Eliminar
                             </a>
+                            {% endif %}
                         </td>
                     </tr>
                 {% endfor %}
