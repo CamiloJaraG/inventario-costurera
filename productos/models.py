@@ -109,7 +109,7 @@ class Producto(models.Model):
     cantidad = models.PositiveIntegerField()
     fecha_produccion = models.DateField()
     material = models.ForeignKey(Material, on_delete=models.PROTECT)
-    vestimenta = models.ForeignKey(Cliente, on_delete=models.PROTECT)
+    vestimenta = models.ForeignKey(Vestimenta, on_delete=models.PROTECT)
 
     def __str__(self):
         return self.nombre
