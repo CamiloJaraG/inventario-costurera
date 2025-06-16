@@ -192,17 +192,54 @@
             <div class="alert alert-info display display-5 text-center">
                 Bienvenida al panel principal de Confecciones Leonor
             </div>
+
             <div class="card mb-4">
-                <div class="card-header">
-                    <h2 class="text-center">Panel de control</h2>
-                    <div class="card-body">
-                    <p>Bienvenido al sistema de Confecciones Leonor. Desde aquí puedes ver alertas del inventario, gestionar productos y realizar operaciones clave.</p>
-                    <ul class="mb-0">
+                <div class="card-header text-center">
+                    <h2 class="mb-0">Panel de control</h2>
+                </div>
+                <div class="card-body">
+                    <p class="mb-3">Desde aquí puedes ver alertas del inventario, gestionar productos y realizar operaciones clave.</p>
+                    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-3">
+                        <div class="col">
+                            <div class="card border-success h-100">
+                                <div class="card-body text-success">
+                                    <h5 class="card-title"><i class="fa-solid fa-box"></i> Productos</h5>
+                                    <p class="card-text">Total: {{ total_productos }}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="card border-primary h-100">
+                                <div class="card-body text-primary">
+                                    <h5 class="card-title"><i class="fa-solid fa-cubes"></i> Materiales</h5>
+                                    <p class="card-text">Total: {{ total_materiales }}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="card border-warning h-100">
+                                <div class="card-body text-warning">
+                                    <h5 class="card-title"><i class="fa-solid fa-users"></i> Clientes</h5>
+                                    <p class="card-text">Total: {{ total_clientes }}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="card border-danger h-100">
+                                <div class="card-body text-danger">
+                                    <h5 class="card-title"><i class="fa-solid fa-money-bill-wave"></i> Ventas</h5>
+                                    <p class="card-text">Total: {{ total_ventas }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr class="my-4">
+                    <h3 class="mb-4">Cómo empezar</h3>
+                    <ul>
                         <li>Revisa las notificaciones de stock bajo o agotado en el panel lateral derecho.</li>
                         <li>Utiliza el menú superior para navegar por inventario, ventas y clientes.</li>
                         <li>Recuerda cerrar sesión cuando termines.</li>
                     </ul>
-                    </div>
                 </div>
             </div>
             {% endif %}

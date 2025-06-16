@@ -83,3 +83,13 @@ body {
 .dropdown-item:active {
   background-color: #332D2D !important;
 }
+
+.pagination .page-link {
+    color: #ffffff; /* Cambia este color al que desees */
+}
+
+.pagination .page-item.active .page-link {
+    color: #ffffff;
+    background-color: #332D2D;
+    border-color: #332D2D;
+}

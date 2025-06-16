@@ -34,8 +34,13 @@ def cerrarSesion(request):
 
 @login_required()
 def inicio(request):
+
     data = {
         'titulo': 'Inicio',
+        'total_productos': Producto.objects.count(),
+        'total_materiales': Material.objects.count(),
+        'total_clientes': Cliente.objects.count(),
+        'total_ventas': Venta.objects.count(),
     }
     return render(request, 'master.html', data)
 
