@@ -54,11 +54,17 @@ body {
 }
 
 .form-clean {
-  background-color: #00bfbf !important;
+  text-decoration: none !important;
+  background-color: #11afaf !important;
+  border-radius: 20px !important;
+  padding: 8px 16px !important;
 }
 
 .form-submit {
-  background-color: #01b20c !important;
+  text-decoration: none !important;
+  background-color: #00bc0d !important;
+  border-radius: 20px !important;
+  padding: 8px 16px !important;
 }
 
 .table-edit {
@@ -85,7 +91,7 @@ body {
 }
 
 .pagination .page-link {
-    color: #ffffff; /* Cambia este color al que desees */
+    color: #ffffff;
 }
 
 .pagination .page-item.active .page-link {

@@ -5,18 +5,18 @@
         <h3>Lista de pedidos</h3>
     </div>
     <div class="text-end mb-2">
-        <a href="{% url 'crear_pedido' %}" class="btn btn-success">Crear pedido</a>
+        <a href="{% url 'crear_pedido' %}" class="btn btn-success"><i class="fa-solid fa-plus"></i> Crear pedido</a>
     </div>
     {% if pageObj %}
     <div>
         <table class="table table-responsive table-hover">
             <thead class="table-dark">
                 <tr>
-                    <th>Nombre</th>
-                    <th>Cantidad</th>
-                    <th>Fecha pedido</th>
-                    <th>Producto</th>
-                    <th>Cliente</th>
+                    <th><i class="fa-solid fa-tag"></i> Nombre</th>
+                    <th><i class="fa-solid fa-cubes"></i> Cantidad</th>
+                    <th><i class="fa-solid fa-calendar-days"></i> Fecha pedido</th>
+                    <th><i class="fa-solid fa-box"></i> Producto</th>
+                    <th><i class="fa-solid fa-user"></i> Cliente</th>
                     <th>Tipo pedido</th>
                     <th class="text-center"><i class="fa-solid fa-gear"></i> Opciones</th>
                 </tr>
