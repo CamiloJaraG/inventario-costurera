@@ -34,7 +34,7 @@ def cerrarSesion(request):
 
 @login_required()
 def inicio(request):
-
+    
     data = {
         'titulo': 'Inicio',
         'total_productos': Producto.objects.count(),
