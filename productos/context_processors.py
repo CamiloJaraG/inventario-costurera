@@ -11,7 +11,7 @@ def notificaciones_context(request):
                     'mensaje': f"{material.nombre} está <strong>agotado</strong>.",
                     'icono': 'fa-circle-exclamation text-danger'
                 })
-            elif material.cantidad < 5:
+            elif material.cantidad < 15:
                 notificaciones.append({
                     'mensaje': f"{material.nombre} tiene <strong>bajo stock</strong>. ({material.cantidad} unidades)",
                     'icono': 'fa-triangle-exclamation text-warning'

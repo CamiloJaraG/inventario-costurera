@@ -1,23 +1,24 @@
 {% extends 'master.html' %}
 {% load static %}
 {% block contenido %}
-    <div class="alert alert-primary text-center mt-3 p-3">
-        <h3>Lista de clientes</h3>
+    <div class="alert alert-primary mt-3 p-3">
+        <h3><i class="fa-solid fa-list-ol"></i> Lista de clientes</h3>
     </div>
     {% if perms.productos.add_cliente %}
     <div class="text-end mb-2">
+        <a href="#" class="btn btn-dark"><i class="fa-solid fa-file-excel"></i> Exportar Excel</a>
         <a href="{% url 'crear_cliente' %}" class="btn btn-success"><i class="fa-solid fa-plus"></i> Crear cliente</a>
     </div>    
     {% endif %}
     {% if pageObj %}
     <div>
-        <table class="table table-responsive table-hover">
+        <table class="table table-responsive table-bordered table-hover">
             <thead class="table-dark">
                 <tr>
                     <th><i class="fa-solid fa-user"></i> Nombre</th>
                     <th><i class="fa-solid fa-envelope"></i> Correo</th>
                     <th><i class="fa-solid fa-phone"></i> Teléfono</th>
-                    <th>Tipo Cliente</th>
+                    <th><i class="fa-solid fa-user-tag"></i> Tipo cliente</th>
                     <th class="text-center"><i class="fa-solid fa-gear"></i> Opciones</th>
                 </tr>
             </thead>

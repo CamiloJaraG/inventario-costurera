@@ -1,22 +1,25 @@
 {% extends 'master.html' %}
 {% load static %}
 {% block contenido %}
-    <div class="alert alert-primary text-center mt-3 p-3">
-        <h3>Lista de productos</h3>
+    <div class="alert alert-primary mt-3 p-3">
+        <h3><i class="fa-solid fa-list-ol"></i> Inventario de productos</h3>
     </div>
+    {% if perms.productos.add_producto %}
     <div class="text-end mb-2">
-        <a href="{% url 'crear_producto' %}" class="btn btn-success">Crear productos</a>
-    </div>
+        <a href="#" class="btn btn-dark"><i class="fa-solid fa-file-excel"></i> Exportar Excel</a>
+        <a href="{% url 'crear_producto' %}" class="btn btn-success"><i class="fa-solid fa-plus"></i> Crear productos</a>
+    </div>    
+    {% endif %}
     {% if pageObj %}
     <div>
-        <table class="table table-responsive table-hover">
+        <table class="table table-responsive table-bordered table-hover">
             <thead class="table-dark">
                 <tr>
-                    <th>Nombre</th>
-                    <th>Cantidad</th>
-                    <th>Fecha produccion</th>
-                    <th>Material</th>
-                    <th>Vestimenta</th>
+                    <th><i class="fa-solid fa-tag"></i> Nombre</th>
+                    <th><i class="fa-solid fa-boxes-stacked"></i> Cantidad</th>
+                    <th><i class="fa-solid fa-calendar-day"></i> Fecha de producción</th>
+                    <th><i class="fa-solid fa-cubes"></i> Material</th>
+                    <th><i class="fa-solid fa-shirt"></i> Vestimenta</th>
                     <th class="text-center"><i class="fa-solid fa-gear"></i> Opciones</th>
                 </tr>
             </thead>
@@ -29,12 +32,16 @@
                         <td>{{ item.material}}</td>
                         <td>{{ item.vestimenta}}</td>
                         <td nowrap class="col-2">
+                            {% if perms.productos.change_producto %}
                             <a class="table-edit text-white" href="{% url 'editar_producto' item.id %}" >
                                 <i class="fa-solid fa-pen-to-square"></i> Editar
                             </a>
+                            {% endif %}
+                            {% if perms.productos.delete_producto %}
                             <a class="table-delete text-white" href="#" onclick="eliminar('{{ item.id }}')" >
                                 <i class="fa-solid fa-trash"></i> Eliminar
                             </a>
+                            {% endif %}
                         </td>
                     </tr>
                 {% endfor %}

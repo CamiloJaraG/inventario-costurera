@@ -1,32 +1,39 @@
 {% extends 'master.html' %}
 {% load static %}
 {% block contenido %}
-    <div class="alert alert-primary text-center mt-3 p-3">
-        <h3>Lista de tipos de clientes</h3>
+    <div class="alert alert-primary mt-3 p-3">
+        <h3><i class="fa-solid fa-list-ol"></i> Lista de tipos de clientes</h3>
     </div>
+    {% if perms.productos.add_tipo_cliente %}
     <div class="text-end mb-2">
-        <a href="{% url 'crear_tipo_cliente' %}" class="btn btn-success">Crear Tipo cliente</a>
+        <a href="#" class="btn btn-dark"><i class="fa-solid fa-file-excel"></i> Exportar Excel</a>
+        <a href="{% url 'crear_tipo_cliente' %}" class="btn btn-success"><i class="fa-solid fa-plus"></i> Crear Tipo cliente</a>
     </div>
+    {% endif %}
     {% if pageObj %}
     <div>
-        <table class="table table-responsive table-hover">
+        <table class="table table-responsive table-bordered table-hover">
             <thead class="table-dark">
                 <tr>
-                    <th>Nombre</th>
+                    <th><i class="fa-solid fa-user-tag"></i> Nombre</th>
                     <th class="text-center"><i class="fa-solid fa-gear"></i> Opciones</th>
                 </tr>
             </thead>
             <tbody>
                 {% for item in pageObj %}
                     <tr>
-                        <td>{{ item.nombre }}</td>
+                        <td>{{ item.tipo }}</td>
                         <td nowrap class="col-2">
+                            {% if perms.productos.change_tipo_cliente %}
                             <a class="table-edit text-white" href="{% url 'editar_tipo_cliente' item.id %}">
                                 <i class="fa-solid fa-pen-to-square"></i> Editar
-                            </a>
+                            </a>    
+                            {% endif %}
+                            {% if perms.productos.delete_tipo_cliente %}
                             <a class="table-delete text-white" href="#" onclick="eliminar('{{ item.id }}')">
                                 <i class="fa-solid fa-trash"></i> Eliminar
                             </a>
+                            {% endif %}
                         </td>
                     </tr>
                 {% endfor %}

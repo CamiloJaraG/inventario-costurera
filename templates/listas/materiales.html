@@ -1,18 +1,21 @@
 {% extends 'master.html' %}
 {% load static %}
 {% block contenido %}
-    <div class="alert alert-primary text-center mt-3 p-3">
-        <h3>Lista de materiales</h3>
+    <div class="alert alert-primary mt-3 p-3">
+        <h3><i class="fa-solid fa-list-ol"></i> Lista de materiales</h3>
     </div>
+    {% if perms.producto.add_material %}
     <div class="text-end mb-2">
-        <a href="{% url 'crear_material' %}" class="btn btn-success">Crear material</a>
-    </div>
+        <a href="#" class="btn btn-dark"><i class="fa-solid fa-file-excel"></i> Exportar Excel</a>
+        <a href="{% url 'crear_material' %}" class="btn btn-success"><i class="fa-solid fa-plus"></i> Crear material</a>
+    </div>    
+    {% endif %}
     {% if pageObj %}
     <div>
-        <table class="table table-responsive table-hover">
+        <table class="table table-responsive table-bordered table-hover">
             <thead class="table-dark">
                 <tr>
-                    <td>Estado</td>
+                    <td><i class="fa-solid fa-circle-dot"></i> Estado</td>
                     <th><i class="fa-solid fa-tag"></i> Nombre</th>
                     <th><i class="fa-solid fa-align-justify"></i> Descripción</th>
                     <th><i class="fa-solid fa-boxes-stacked"></i> Cantidad</th>
@@ -41,12 +44,16 @@
                         <td>{{ item.fecha_entrada}}</td>
                         <td>{{ item.tipo_material}}</td>
                         <td nowrap class="col-2">
+                            {% if perms.productos.change_material %}
                             <a class="table-edit text-white" href="{% url 'editar_material' item.id %}" >
                                 <i class="fa-solid fa-pen-to-square"></i> Editar
-                            </a>
+                            </a>    
+                            {% endif %}
+                            {% if perms.productos.delete_material %}
                             <a class="table-delete text-white" href="#" onclick="eliminar('{{ item.id }}')" >
                                 <i class="fa-solid fa-trash"></i> Eliminar
-                            </a>
+                            </a>    
+                            {% endif %}
                         </td>
                     </tr>
                 {% endfor %}

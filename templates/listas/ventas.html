@@ -1,22 +1,25 @@
 {% extends 'master.html' %}
 {% load static %}
 {% block contenido %}
-    <div class="alert alert-primary text-center mt-3 p-3">
-        <h3>Lista de ventas</h3>
+    <div class="alert alert-primary mt-3 p-3">
+        <h3><i class="fa-solid fa-list-ol"></i> Lista de ventas</h3>
     </div>
+    {% if perms.productos._add_venta %}
     <div class="text-end mb-2">
-        <a href="{% url 'crear_venta' %}" class="btn btn-success">Crear Ventas</a>
-    </div>
+        <a href="#" class="btn btn-dark"><i class="fa-solid fa-file-excel"></i> Exportar Excel</a>
+        <a href="{% url 'crear_venta' %}" class="btn btn-success"><i class="fa-solid fa-plus"></i> Crear Ventas</a>
+    </div>    
+    {% endif %}
     {% if pageObj %}
     <div>
-        <table class="table table-responsive table-hover">
+        <table class="table table-responsive table-bordered table-hover">
             <thead class="table-dark">
                 <tr>
-                    <th>Descripcion</th>
-                    <th>Precio</th>
-                    <th>Fecha venta</th>
-                    <th>Pedido</th>
-                    <th>Tipo pago</th>
+                    <th><i class="fa-solid fa-align-justify"></i> Descripción</th>
+                    <th><i class="fa-solid fa-dollar-sign"></i> Precio</th>
+                    <th><i class="fa-solid fa-calendar-day"></i> Fecha de venta</th>
+                    <th><i class="fa-solid fa-truck-fast"></i> Pedido</th>
+                    <th><i class="fa-solid fa-credit-card"></i> Tipo de pago</th>
                     <th class="text-center"><i class="fa-solid fa-gear"></i> Opciones</th>
                 </tr>
             </thead>
@@ -29,12 +32,16 @@
                         <td>{{ item.pedido}}</td>
                         <td>{{ item.tipo_pago}}</td>
                         <td nowrap class="col-2">
+                            {% if perms.productos.change_venta %}
                             <a class="table-edit text-white" href="{% url 'editar_venta' item.id %}" >
                                 <i class="fa-solid fa-pen-to-square"></i> Editar
                             </a>
+                            {% endif %}
+                            {% if perms.productos.delete_venta %}
                             <a class="table-delete text-white" href="#" onclick="eliminar('{{ item.id }}')" >
                                 <i class="fa-solid fa-trash"></i> Eliminar
                             </a>
+                            {% endif %}
                         </td>
                     </tr>
                 {% endfor %}

@@ -116,7 +116,7 @@
                                 <li>
                                     <a class="dropdown-item" href="{% url 'listar_tipo_vestimentas' %}">
                                         <i class="fa-solid fa-cubes"></i>
-                                        Tipo vestimentas
+                                        Tipos de vestimentas
                                     </a>
                                 </li>
                                 {% endif %}
@@ -124,7 +124,7 @@
                                 <li>
                                     <a class="dropdown-item" href="{% url 'listar_tipo_pedidos' %}">
                                         <i class="fa-solid fa-cubes"></i>
-                                        Tipo pedidos
+                                        Tipos de pedidos
                                     </a>
                                 </li>
                                 {% endif %}
@@ -167,7 +167,7 @@
                 <!-- Contenedor lateral de notificaciones -->
                 <div class="offcanvas offcanvas-end" tabindex="-1" id="notificacionesCanvas" aria-labelledby="notificacionesCanvasLabel">
                     <div class="offcanvas-header">
-                        <h5 class="offcanvas-title" id="notificacionesCanvasLabel">Notificaciones</h5>
+                        <h5 class="offcanvas-title" id="notificacionesCanvasLabel"><i class="fa-solid fa-bell"></i> Notificaciones</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Cerrar"></button>
                     </div>
                     <div class="offcanvas-body">
@@ -186,7 +186,64 @@
                 </div>
             </div>
         </nav>
-        <main class="container mt-2 pt-2">
+        <main class="container mt-2 pt-4">
+            {% if titulo == 'Inicio' %}
+            <!-- Contenido exclusivo para la página de inicio -->
+            <div class="alert alert-info display display-5 text-center">
+                Bienvenido al panel principal de Confecciones Leonor
+            </div>
+
+            <div class="card mb-4">
+                <div class="card-header text-center">
+                    <h2 class="mb-0">Panel de control</h2>
+                </div>
+                <div class="card-body">
+                    <p class="mb-3">Desde aquí puedes ver alertas del inventario, gestionar productos y realizar operaciones clave.</p>
+                    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-3">
+                        <div class="col">
+                            <div class="card border-success h-100">
+                                <div class="card-body text-success">
+                                    <h5 class="card-title"><i class="fa-solid fa-box"></i> Productos</h5>
+                                    <p class="card-text">Total: {{ total_productos }}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="card border-primary h-100">
+                                <div class="card-body text-primary">
+                                    <h5 class="card-title"><i class="fa-solid fa-cubes"></i> Materiales</h5>
+                                    <p class="card-text">Total: {{ total_materiales }}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="card border-warning h-100">
+                                <div class="card-body text-warning">
+                                    <h5 class="card-title"><i class="fa-solid fa-users"></i> Clientes</h5>
+                                    <p class="card-text">Total: {{ total_clientes }}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="card border-danger h-100">
+                                <div class="card-body text-danger">
+                                    <h5 class="card-title"><i class="fa-solid fa-money-bill-wave"></i> Ventas</h5>
+                                    <p class="card-text">Total: {{ total_ventas }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr class="my-4">
+                    <h3 class="mb-4">Cómo empezar</h3>
+                    <ul>
+                        <li>Revisa las notificaciones de stock bajo o agotado en el panel lateral derecho.</li>
+                        <li>Utiliza el menú superior para navegar por inventario, ventas y clientes.</li>
+                        <li>Recuerda cerrar sesión cuando termines.</li>
+                    </ul>
+                </div>
+            </div>
+            {% endif %}
+
             {% block contenido %}
             {% endblock %}
         </main>

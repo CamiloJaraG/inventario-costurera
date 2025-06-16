@@ -3,3 +3,13 @@ __pycache__/
 *.sqlite3
 *.pyc
 *.log
+.env
+
+# Migraciones de Django
+*/migrations/*
+!*/migrations/__init__.py
+
+# Archivos de caché de Python
+*.pyo
+*.pyd
+*.pdb
