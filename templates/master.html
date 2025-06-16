@@ -167,7 +167,7 @@
                 <!-- Contenedor lateral de notificaciones -->
                 <div class="offcanvas offcanvas-end" tabindex="-1" id="notificacionesCanvas" aria-labelledby="notificacionesCanvasLabel">
                     <div class="offcanvas-header">
-                        <h5 class="offcanvas-title" id="notificacionesCanvasLabel">Notificaciones</h5>
+                        <h5 class="offcanvas-title" id="notificacionesCanvasLabel"><i class="fa-solid fa-bell"></i> Notificaciones</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Cerrar"></button>
                     </div>
                     <div class="offcanvas-body">
@@ -187,7 +187,7 @@
             </div>
         </nav>
         <main class="container mt-2 pt-4">
-            {% if request.path == '/' or titulo == 'Inicio' %}
+            {% if titulo == 'Inicio' %}
             <!-- Contenido exclusivo para la página de inicio -->
             <div class="alert alert-info display display-5 text-center">
                 Bienvenida al panel principal de Confecciones Leonor
@@ -205,9 +205,8 @@
                     </div>
                 </div>
             </div>
-                
-
             {% endif %}
+
             {% block contenido %}
             {% endblock %}
         </main>
