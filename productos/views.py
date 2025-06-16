@@ -34,11 +34,8 @@ def cerrarSesion(request):
 
 @login_required()
 def inicio(request):
-    materiales_bajo_stock = Material.objects.filter(cantidad__lt=5)
-    notificaciones = [f"{m.nombre} tiene bajo stock. ({m.cantidad} unidades)" for m in materiales_bajo_stock]
     data = {
         'titulo': 'Inicio',
-        'notificaciones': notificaciones,
     }
     return render(request, 'master.html', data)
 

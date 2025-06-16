@@ -1,6 +1,7 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,162 +12,185 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <link rel="shortcut icon" href="{% static 'images/icons/costurera.ico' %}" type="image/x-icon">
 </head>
+
 <body>
     <header>
-    <nav class="navbar navbar-dark fixed-top bg-dark p-3">
-        <div class="container-fluid px-3 d-flex align-items-center">
-            <!-- Logo y menú -->
-            <div class="d-flex align-items-center gap-4">
-                <div class="logo">
-                    <a class="navbar-brand" href="{% url 'inicio' %}">
-                        <i class="fa-solid fa-shirt"></i>
-                        Confecciones Leonor
-                    </a>
+        <nav class="navbar navbar-dark fixed-top bg-dark p-3">
+            <div class="container-fluid px-3 d-flex align-items-center">
+                <!-- Logo y menú -->
+                <div class="d-flex align-items-center gap-4">
+                    <div class="logo">
+                        <a class="navbar-brand" href="{% url 'inicio' %}">
+                            <i class="fa-solid fa-shirt"></i>
+                            Confecciones Leonor
+                        </a>
+                    </div>
+                    <ul class="nav nav-underline">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-white" id="dropdownInventario" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fa-solid fa-boxes"></i> Inventario
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownInventario">
+                                {% if perms.productos.view_vestimenta %}
+                                <li>
+                                    <a class="dropdown-item" href="{% url 'listar_vestimentas' %}">
+                                        <i class="fa-solid fa-shirt"></i>
+                                        Vestimentas
+                                    </a>
+                                </li>
+                                {% endif %}
+                                {% if perms.productos.view_material %}
+                                <li>
+                                    <a class="dropdown-item" href="{% url 'listar_materiales' %}">
+                                        <i class="fa-solid fa-cubes"></i>
+                                        Materiales
+                                    </a>
+                                </li>
+                                {% endif %}
+                                {% if perms.productos.view_pedido %}
+                                <li>
+                                    <a class="dropdown-item" href="{% url 'listar_pedidos' %}">
+                                        <i class="fa-solid fa-truck-fast"></i>
+                                        Pedidos
+                                    </a>
+                                </li>
+                                {% endif %}
+                                {% if perms.productos.view_producto %}
+                                <li>
+                                    <a class="dropdown-item" href="{% url 'listar_productos' %}">
+                                        <i class="fa-solid fa-box"></i>
+                                        Productos
+                                    </a>
+                                </li>
+                                {% endif %}
+                                {% if perms.productos.view_venta %}
+                                <li>
+                                    <a class="dropdown-item" href="{% url 'listar_ventas' %}">
+                                        <i class="fa-solid fa-money-bill"></i>
+                                        Ventas
+                                    </a>
+                                </li>
+                                {% endif %}
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-white" id="dropdownListas" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fa-solid fa-list"></i> Listas
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                                {% if perms.productos.view_tipos_cliente %}
+                                <li>
+                                    <a class="dropdown-item" href="{% url 'listar_tipo_clientes' %}">
+                                        <i class="fa-solid fa-users-gear"></i>
+                                        Tipos de clientes
+                                    </a>
+                                </li>
+                                {% endif %}
+                                {% if perms.productos.view_cliente %}
+                                <li>
+                                    <a class="dropdown-item" href="{% url 'listar_clientes' %}">
+                                        <i class="fa-solid fa-users"></i>
+                                        Clientes
+                                    </a>
+                                </li>
+                                {% endif %}
+                                {% if perms.productos.view_tipo_pago %}
+                                <li>
+                                    <a class="dropdown-item" href="{% url 'listar_tipo_pagos' %}">
+                                        <i class="fa-solid fa-credit-card"></i>
+                                        Tipos de pago
+                                    </a>
+                                </li>
+                                {% endif %}
+                                {% if perms.productos.view_tipos_materiales %}
+                                <li>
+                                    <a class="dropdown-item" href="{% url 'listar_tipo_materiales' %}">
+                                        <i class="fa-solid fa-tools"></i>
+                                        Tipos de materiales
+                                    </a>
+                                </li>
+                                {% endif %}
+                                {% if perms.productos.view_tipos_vestimentas %}
+                                <li>
+                                    <a class="dropdown-item" href="{% url 'listar_tipo_vestimentas' %}">
+                                        <i class="fa-solid fa-cubes"></i>
+                                        Tipo vestimentas
+                                    </a>
+                                </li>
+                                {% endif %}
+                                {% if perms.productos.view_tipos_pedidos %}
+                                <li>
+                                    <a class="dropdown-item" href="{% url 'listar_tipo_pedidos' %}">
+                                        <i class="fa-solid fa-cubes"></i>
+                                        Tipo pedidos
+                                    </a>
+                                </li>
+                                {% endif %}
+                            </ul>
+                        </li>
+                    </ul>
                 </div>
-                <ul class="nav nav-underline">
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle text-white" id="dropdownInventario" role="button"
-                            data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="fa-solid fa-boxes"></i> Inventario
+
+                <!-- Menú de usuario a la derecha -->
+                <ul class="nav nav-underline ms-auto">
+                    <!-- Icono de notificaciones con indicador -->
+                    <li class="nav-item">
+                        <a class="nav-link text-white position-relative" href="#" data-bs-toggle="offcanvas"
+                            data-bs-target="#notificacionesCanvas" aria-controls="notificacionesCanvas">
+                            <i class="fa-solid fa-bell"></i>
+                            {% if notificaciones %}
+                            <span
+                                class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                {{ notificaciones|length }}
+                            </span>
+                            {% endif %}
                         </a>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownInventario">
-                            {% if perms.productos.view_vestimenta %}
+                    </li>
+                    {% if user.is_authenticated %}
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle text-white user-dropdown" href="#" id="dropdownUser"
+                            role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fa-solid fa-user"></i> {{ request.user.get_full_name|default:request.user.username}}
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownUser">
                             <li>
-                                <a class="dropdown-item" href="{% url 'listar_vestimentas' %}">
-                                    <i class="fa-solid fa-shirt"></i>
-                                    Vestimentas
-                                </a>
-                            </li>    
-                            {% endif %}
-                            {% if perms.productos.view_material %}
-                            <li>
-                                <a class="dropdown-item" href="{% url 'listar_materiales' %}">
-                                    <i class="fa-solid fa-cubes"></i>
-                                    Materiales
-                                </a>
-                            </li>    
-                            {% endif %}
-                            {% if perms.productos.view_pedido %}
-                            <li>
-                                <a class="dropdown-item" href="{% url 'listar_pedidos' %}">
-                                    <i class="fa-solid fa-truck-fast"></i>
-                                    Pedidos
-                                </a>
-                            </li>    
-                            {% endif %}
-                            {% if perms.productos.view_producto %}
-                            <li>
-                                <a class="dropdown-item" href="{% url 'listar_productos' %}">
-                                    <i class="fa-solid fa-shirt"></i>
-                                    Productos
-                                </a>
+                                <a class="dropdown-item" href="{% url 'logout' %}">
+                                <i class="fa-solid fa-right-from-bracket"></i> Cerrar sesión</a>
                             </li>
-                            {% endif %}
-                            {% if perms.productos.view_venta %}
-                            <li>
-                                <a class="dropdown-item" href="{% url 'listar_ventas' %}">
-                                    <i class="fa-solid fa-shirt"></i>
-                                    Ventas
-                                </a>
-                            </li>    
-                            {% endif %}
                         </ul>
                     </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle text-white" id="dropdownListas" role="button"
-                            data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="fa-solid fa-list"></i> Listas
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                            {% if perms.productos.view_tipos_cliente %}
-                            <li>
-                                <a class="dropdown-item" href="{% url 'listar_tipo_clientes' %}">
-                                    <i class="fa-solid fa-users-gear"></i>
-                                    Tipos de clientes
-                                </a>
-                            </li>    
-                            {% endif %}
-                            {% if perms.productos.view_cliente %}
-                            <li>
-                                <a class="dropdown-item" href="{% url 'listar_clientes' %}">
-                                    <i class="fa-solid fa-users"></i>
-                                    Clientes
-                                </a>
-                            </li>    
-                            {% endif %}
-                            {% if perms.productos.view_tipo_pago %}
-                            <li>
-                                <a class="dropdown-item" href="{% url 'listar_tipo_pagos' %}">
-                                    <i class="fa-solid fa-credit-card"></i>
-                                    Tipos de pago
-                                </a>
-                            </li>    
-                            {% endif %}
-                            {% if perms.productos.view_tipos_materiales %}
-                            <li>
-                                <a class="dropdown-item" href="{% url 'listar_tipo_materiales' %}">
-                                    <i class="fa-solid fa-tools"></i>
-                                    Tipos de materiales
-                                </a>
-                            </li>    
-                            {% endif %}
-                            {% if perms.productos.view_tipos_vestimentas %}
-                            <li>
-                                <a class="dropdown-item" href="{% url 'listar_tipo_vestimentas' %}">
-                                    <i class="fa-solid fa-cubes"></i>
-                                    Tipo vestimentas
-                                </a>
-                            </li>    
-                            {% endif %}
-                            {% if perms.productos.view_tipos_pedidos %}
-                            <li>
-                                <a class="dropdown-item" href="{% url 'listar_tipo_pedidos' %}">
-                                    <i class="fa-solid fa-cubes"></i>
-                                    Tipo pedidos
-                                </a>
-                            </li>    
-                            {% endif %}
-                        </ul>
-                    </li>
+                    {% endif %}
                 </ul>
-            </div>
 
-            <!-- Menú de usuario a la derecha -->
-            <ul class="nav nav-underline ms-auto">
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle text-white" href="#" id="dropdownNotificacion" 
-                    role="button" data-bs-toggle="dropdown">
-                        <i class="fa-solid fa-bell"></i> Notificaciones
-                    </a>
-                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownNotificacion">
+                <!-- Contenedor lateral de notificaciones -->
+                <div class="offcanvas offcanvas-end" tabindex="-1" id="notificacionesCanvas" aria-labelledby="notificacionesCanvasLabel">
+                    <div class="offcanvas-header">
+                        <h5 class="offcanvas-title" id="notificacionesCanvasLabel">Notificaciones</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Cerrar"></button>
+                    </div>
+                    <div class="offcanvas-body">
                         {% if notificaciones %}
+                        <ul class="list-group">
                             {% for n in notificaciones %}
-                            <li><span class="dropdown-item">{{ n }}</span></li>
+                            <li class="list-group-item list-group-item-action">
+                                <i class="fa-solid {{ n.icono }} text-warning me-2"></i> {{ n.mensaje|safe }}
+                            </li>
                             {% endfor %}
+                        </ul>
                         {% else %}
-                            <li><span class="dropdown-item">No hay notificaciones</span></li>
+                        <p class="text-muted">No hay notificaciones.</p>
                         {% endif %}
-                    </ul>
-                </li>
-                {% if user.is_authenticated %}
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle text-white user-dropdown" href="#" id="dropdownUser"
-                        role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <i class="fa-solid fa-user"></i> {{ request.user.get_full_name|default:request.user.username }}
-                    </a>
-                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownUser">
-                        <li><a class="dropdown-item" href="{% url 'logout' %}"><i class="fa-solid fa-right-from-bracket"></i>Cerrar sesión</a></li>
-                    </ul>
-                </li>   
-                {% endif %}
-            </ul>
-        </div>
-    </nav>
-
-    <main class="container mt-2 pt-2">
-        {% block contenido %}
-        {% endblock %}
-    </main>
-    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <main class="container mt-2 pt-2">
+            {% block contenido %}
+            {% endblock %}
+        </main>
+        <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
 </body>
+
 </html>

@@ -76,11 +76,6 @@ body {
   margin-left: 3px !important;
 }
 
-#notificaciones-lista .notification-item {
-    transition: background-color 0.3s ease;
-    cursor: pointer;
-}
-
-#notificaciones-lista .notification-item:hover {
-    background-color: #f0f0f0;
+.dropdown-item:active {
+  background-color: #332D2D !important;
 }
